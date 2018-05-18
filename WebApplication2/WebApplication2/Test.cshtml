@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+    <div ng-app="myApp" ng-controller="myCtrl">
+
+        <p>Today's welcome message is:</p>
+
+        <h1>{{order.Plato}}</h1>
+        <h1>{{order.Cantidad + 1}}</h1>
+
+    </div>
+
+    <p>The $http service requests a page on the server, and the response is set as the value of the "myWelcome" variable.</p>
+
+    <script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+  $http({
+    method : "GET",
+    url: "/api/Orders"
+  }).then(function mySuccess(response) {
+      $scope.order = response.data;
+    }, function myError(response) {
+        $scope.order = response.statusText;
+  });
+});
+    </script>
+
+</body>
+</html>

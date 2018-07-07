@@ -42,7 +42,7 @@ namespace EasyOrderWeb.Controllers
         public Response Post([FromBody]Credential credential)
         {
 
-            var existingUser = _context.Users.FirstOrDefault(x => x.Username == credential.UserName);
+            var existingUser = _context.Empleado.FirstOrDefault(x => x.Username == credential.UserName);
 
             if (existingUser != null)
             {
@@ -59,6 +59,29 @@ namespace EasyOrderWeb.Controllers
             {
                 Allowed = false,
                 Message = "User or Password is wrong."
+            };
+        }
+
+        [HttpPost]
+        [Route("Register")]
+        public Response Register([FromBody]Credential credential)
+        {
+
+            _context.Empleado.Add(
+                new Empleado
+                {
+                    Username = credential.UserName,
+                    Password = credential.Password,
+                    Idrestaurante = _context.Restaurante.Where(x => x.Nombrerestaurante == "Uchu Manka").Select(x => x.Idrestaurante).FirstOrDefault(),
+                    Idpersona = _context.Persona.Where(x => x.Nombrepersona == "Kenedy Vargas").Select(x => x.Idpersona).FirstOrDefault(),
+                    Idempleado = new Guid()
+
+                });
+            _context.SaveChanges();
+            return new Response
+            {
+                Allowed = true,
+                Message = "User added successfully."
             };
         }
     }

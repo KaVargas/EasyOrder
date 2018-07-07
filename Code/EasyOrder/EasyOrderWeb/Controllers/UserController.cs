@@ -64,18 +64,26 @@ namespace EasyOrderWeb.Controllers
 
         [HttpPost]
         [Route("Register")]
-        public Response Register([FromBody]Credential credential)
+        public Response Register([FromBody]RegisterCredential newUser)
         {
-
+            _context.Persona.Add(
+                new Persona
+                {
+                    Nombrepersona = newUser.FullName,
+                    Cedulapersona = newUser.CI,
+                    Telefonopersona = newUser.PhoneNumber,
+                    Cumpleanospersona = null,
+                    Idpersona = Guid.NewGuid()
+                });
+            _context.SaveChanges();
             _context.Empleado.Add(
                 new Empleado
                 {
-                    Username = credential.UserName,
-                    Password = credential.Password,
+                    Username = newUser.UserName,
+                    Password = newUser.Password,
                     Idrestaurante = _context.Restaurante.Where(x => x.Nombrerestaurante == "Uchu Manka").Select(x => x.Idrestaurante).FirstOrDefault(),
-                    Idpersona = _context.Persona.Where(x => x.Nombrepersona == "Kenedy Vargas").Select(x => x.Idpersona).FirstOrDefault(),
-                    Idempleado = new Guid()
-
+                    Idpersona = _context.Persona.Where(x => x.Nombrepersona == newUser.FullName && x.Cedulapersona == newUser.CI).Select(x => x.Idpersona).FirstOrDefault(),
+                    Idempleado = Guid.NewGuid()
                 });
             _context.SaveChanges();
             return new Response

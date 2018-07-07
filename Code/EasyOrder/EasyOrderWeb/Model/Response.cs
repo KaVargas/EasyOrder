@@ -7,7 +7,7 @@ namespace EasyOrderWeb.Model
 {
     public class Response
     {
-        public bool allowed { get; set; }
-        public String message { get; set; }
+        public bool Allowed { get; set; }
+        public String Message { get; set; }
     }
 }

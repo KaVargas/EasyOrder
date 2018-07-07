@@ -7,7 +7,7 @@ namespace EasyOrderWeb.Model
 {
     public class Credential
     {
-        public String userName { get; set; }
-        public String passWord { get; set; }
+        public String UserName { get; set; }
+        public String Password { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EasyOrderWeb.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,37 +12,31 @@ namespace EasyOrderWeb.Controllers
     [Produces("application/json")]
     [Route("api/user")]
     public class UserController : Controller
-    {
-        // GET: api/Login
+    {       
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET: api/Login/5
-        [HttpGet("{id}", Name = "Login")]
-        public string Login(int id)
-        {
-            return id.ToString();
-        }
+        //// GET: api/Login/5
+        //[HttpGet("{id}")]
+        //[Route("Login")]
+        //public string Login(int id)
+        //{
+        //    return id.ToString();
+        //}
         
-        // POST: api/Login
+        // POST: api/User/Login
         [HttpPost]
-        public void Post([FromBody]string value)
+        [Route("Login")]
+        public Response Post([FromBody]Credential credential)
         {
-        }
-        
-        // PUT: api/Login/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-        
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+            return new Response
+            {
+                Allowed = true,
+                Message = "All Ok"
+            };
+        }        
     }
 }

@@ -112,10 +112,11 @@
     </style>
 </head>
 <body>
-	<form onsubmit="return validateForm()" method="get">
-		<div class="imgcontainer">
-			<img src="~/images/Logo_EasyOrder.png" alt="Avatar" class="avatar">
-		</div>
+    <form action="/Page" onsubmit="return validateForm()" method="post">
+        <input type="hidden" id="targetUrl" name="targetUrl" value="/PrincipalPage">
+        <div class="imgcontainer">
+            <img src="~/images/Logo_EasyOrder.png" alt="Avatar" class="avatar">
+        </div>
 
         <div class="container">
             <label for="uname"><b>Usuario</b></label>
@@ -131,11 +132,11 @@
             </label>
         </div>
 
-		<div class="container" style="background-color:#f1f1f1">
-			<button id="cancelButton" type="button" class="cancelbtn">Cancel</button>
-			<span class="psw"><a href="#">Olvidó la contraseña?</a></span>
-		</div>
-	</form>
+        <div class="container" style="background-color:#f1f1f1">
+            <button id="cancelButton" type="button" class="cancelbtn">Cancel</button>
+            <span class="psw"><a href="#">Olvidó la contraseña?</a></span>
+        </div>
+    </form>
 
 </body>
 </html>

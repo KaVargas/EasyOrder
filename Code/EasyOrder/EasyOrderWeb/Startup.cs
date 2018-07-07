@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DatabaseLayer.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,6 +24,8 @@ namespace EasyOrderWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            var connection = @"Server=tcp:easyorderwebdb.database.windows.net,1433;Initial Catalog=easyorder;Persist Security Info=False;User ID=Administrador;Password=Sinclave-5;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            services.AddDbContext<EasyorderContext>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,7 +46,7 @@ namespace EasyOrderWeb
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller}/{action}/{id}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
                
             });
             

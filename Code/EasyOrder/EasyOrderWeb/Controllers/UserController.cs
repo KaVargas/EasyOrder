@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DatabaseLayer.Models;
 using EasyOrderWeb.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +13,15 @@ namespace EasyOrderWeb.Controllers
     [Produces("application/json")]
     [Route("api/user")]
     public class UserController : Controller
-    {       
+    {
+
+        private readonly EasyorderContext _context;
+        public UserController(EasyorderContext context)
+        {
+            _context = context;
+        }
+
+
         [HttpGet]
         public IEnumerable<string> Get()
         {
@@ -32,11 +41,13 @@ namespace EasyOrderWeb.Controllers
         [Route("Login")]
         public Response Post([FromBody]Credential credential)
         {
-            return new Response
-            {
-                Allowed = true,
-                Message = "All Ok"
-            };
+
+           
+                return new Response
+                {
+                    Allowed = true,
+                    Message = "All Ok"
+                };
         }        
     }
 }

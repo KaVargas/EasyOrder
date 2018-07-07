@@ -35,19 +35,31 @@ namespace EasyOrderWeb.Controllers
         //{
         //    return id.ToString();
         //}
-        
+
         // POST: api/User/Login
         [HttpPost]
         [Route("Login")]
         public Response Post([FromBody]Credential credential)
         {
 
-           
-                return new Response
+            var existingUser = _context.Users.FirstOrDefault(x => x.Username == credential.UserName);
+
+            if (existingUser != null)
+            {
+                if (existingUser.Password == credential.Password)
                 {
-                    Allowed = true,
-                    Message = "All Ok"
-                };
-        }        
+                    return new Response
+                    {
+                        Allowed = true,
+                        Message = "All Ok."
+                    };
+                }
+            }
+            return new Response
+            {
+                Allowed = false,
+                Message = "User or Password is wrong."
+            };
+        }
     }
 }

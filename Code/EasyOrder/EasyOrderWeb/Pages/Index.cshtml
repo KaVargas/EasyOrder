@@ -8,19 +8,35 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
+    @* Sirve para agragar funcionalidades al boton cancelar
+        <script>
         $(document).ready(function () {
             $("#cancelButton").click(function () {
-                $.post("demo_test_post.asp",
-                    {
-                        name: "Donald Duck",
-                        city: "Duckburg"
-                    },
-                    function (data, status) {
-                        alert("Data: " + data + "\nStatus: " + status);
-                    });
+               
             });
         });
+    </script>*@
+    <script>
+        function validateForm() {
+            $.ajax({
+                url: "/api/user/login",
+                method: "POST",
+                data: JSON.stringify({
+                    username: $("#username").val(),
+                    password: $("#password").val()
+                }),
+                dataType: 'json',
+                contentType: "application/json",
+                success: function (result, status, jqXHR) {
+                    window.location.replace("/PrincipalPage");
+                    return result.allowed;
+                    
+                },
+                error(jqXHR, textStatus, errorThrown) {
+                    return false;
+                }
+            });
+        }
     </script>
 
     <style>
@@ -96,17 +112,17 @@
     </style>
 </head>
 <body>
-	<form action="/action_page.php">
+	<form onsubmit="return validateForm()" method="get">
 		<div class="imgcontainer">
 			<img src="~/images/Logo_EasyOrder.png" alt="Avatar" class="avatar">
 		</div>
 
         <div class="container">
             <label for="uname"><b>Usuario</b></label>
-            <input type="text" placeholder="Ingrese su usuario o email" name="uname" required>
+            <input id="username" type="text" placeholder="Ingrese su usuario o email" name="uname" required>
 
             <label for="psw"><b>Constraseña</b></label>
-            <input type="password" placeholder="Ingrese su contraseña" name="psw" required>
+            <input id="password" type="password" placeholder="Ingrese su contraseña" name="psw" required>
 
             <button id="submitButton" type="submit">Entrar</button>
 

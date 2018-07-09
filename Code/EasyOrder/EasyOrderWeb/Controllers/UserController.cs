@@ -66,31 +66,66 @@ namespace EasyOrderWeb.Controllers
         [Route("Register")]
         public Response Register([FromBody]RegisterCredential newUser)
         {
-            _context.Persona.Add(
-                new Persona
-                {
-                    Nombrepersona = newUser.FullName,
-                    Cedulapersona = newUser.CI,
-                    Telefonopersona = newUser.PhoneNumber,
-                    Cumpleanospersona = null,
-                    Idpersona = Guid.NewGuid()
-                });
-            _context.SaveChanges();
-            _context.Empleado.Add(
-                new Empleado
-                {
-                    Username = newUser.UserName,
-                    Password = newUser.Password,
-                    Idrestaurante = _context.Restaurante.Where(x => x.Nombrerestaurante == "Uchu Manka").Select(x => x.Idrestaurante).FirstOrDefault(),
-                    Idpersona = _context.Persona.Where(x => x.Nombrepersona == newUser.FullName && x.Cedulapersona == newUser.CI).Select(x => x.Idpersona).FirstOrDefault(),
-                    Idempleado = Guid.NewGuid()
-                });
-            _context.SaveChanges();
+            //it's only possible to have one unique username per employee
+            //validate if the username has been occupied by other employee, if true, ask for another username
+            if (registeredUser(newUser)) return new Response { Allowed = false, Message = "The Username is already in use" };
+            //search in the DB if the person has been registered already, if not, he or she will be added 
+            var existingPerson =
+                _context.Persona.Where(x => x.Cedulapersona == newUser.CI && x.Nombrepersona == newUser.FullName).
+                Select(x => x.Idpersona).FirstOrDefault();
+            if (existingPerson == null)
+            {
+                addPerson(newUser);
+            }
+            else
+            {
+                addEmployee(newUser);
+            }
             return new Response
             {
                 Allowed = true,
                 Message = "User added successfully."
             };
+        }
+
+        //search the DB for an user with the same username
+        private bool registeredUser(RegisterCredential user)
+        {
+            var iduser = _context.Empleado.FirstOrDefault(x => x.Username == user.UserName);
+            if (iduser != null) return false;
+            else return true;
+        }
+
+        //add a new register to 'Persona' table
+        private void addPerson(RegisterCredential newUser)
+        {
+            _context.Persona.Add(
+                   new Persona
+                   {
+                       Nombrepersona = newUser.FullName,
+                       Cedulapersona = newUser.CI,
+                       Telefonopersona = newUser.PhoneNumber,
+                       Cumpleanospersona = null,
+                       Idpersona = Guid.NewGuid()
+                   });
+
+            _context.SaveChanges();
+        }
+
+        //add a new register to 'Empleado' table
+        private void addEmployee(RegisterCredential newUser)
+        {
+
+            _context.Empleado.Add(
+                     new Empleado
+                     {
+                         Username = newUser.UserName,
+                         Password = newUser.Password,
+                         Idrestaurante = _context.Restaurante.Where(x => x.Nombrerestaurante == "Uchu Manka").Select(x => x.Idrestaurante).FirstOrDefault(),
+                         Idpersona = _context.Persona.Where(x => x.Nombrepersona == newUser.FullName && x.Cedulapersona == newUser.CI).Select(x => x.Idpersona).FirstOrDefault(),
+                         Idempleado = Guid.NewGuid()
+                     });
+            _context.SaveChanges();
         }
     }
 }

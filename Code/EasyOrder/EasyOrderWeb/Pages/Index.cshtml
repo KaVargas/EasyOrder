@@ -8,14 +8,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    @* Sirve para agragar funcionalidades al boton cancelar
-        <script>
-        $(document).ready(function () {
-            $("#cancelButton").click(function () {
-               
-            });
-        });
-    </script>*@
+     
     <script>
         function validateForm() {
             $.ajax({
@@ -33,6 +26,7 @@
                     
                 },
                 error(jqXHR, textStatus, errorThrown) {
+                    window.location.replace("/Index");
                     return false;
                 }
             });
@@ -71,7 +65,7 @@
                 opacity: 0.8;
             }
 
-        .cancelbtn {
+        .registerbtn {
             width: auto;
             padding: 10px 18px;
             background-color: #f44336;
@@ -133,7 +127,7 @@
         </div>
 
         <div class="container" style="background-color:#f1f1f1">
-            <button id="cancelButton" type="button" class="cancelbtn">Cancel</button>
+            <button id="registerButton" type="button" class="registerbtn" onclick="location.href = '/RegisterPage';">Registrarse</button>
             <span class="psw"><a href="#">Olvidó la contraseña?</a></span>
         </div>
     </form>

@@ -13,8 +13,8 @@ namespace EasyOrderWeb.Model
         /*
          json
          {
-            "productName":"example"
-            "productDescription":"example"
+            "productName":"example",
+            "productDescription":"example",
             "productprice":0.00
          }
          */

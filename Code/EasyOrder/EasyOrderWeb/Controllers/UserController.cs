@@ -21,21 +21,6 @@ namespace EasyOrderWeb.Controllers
             _context = context;
         }
 
-
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        //// GET: api/Login/5
-        //[HttpGet("{id}")]
-        //[Route("Login")]
-        //public string Login(int id)
-        //{
-        //    return id.ToString();
-        //}
-
         // POST: api/User/Login
         [HttpPost]
         [Route("Login")]

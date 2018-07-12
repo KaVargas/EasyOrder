@@ -34,84 +34,91 @@
             </div>
         </div>
     </header>
+    
+    <!--primera fila del menu de platos-->
+    <div class="btn-group btn-group-justified">
+        <a href="#" class="btn btn-primary">Comidas</a>
+        <a href="#" class="btn btn-primary">Bebidas</a>
+    </div>
+    <section class="main row">
+        <article class="col-xs-4">
+            <p>
+                PORCION DE YUCA
+            </p>
+            <br>
+            <button class="btn btn-xs">
+                <img src="~/images/yuca.jpg" class="img-responsive img-rounded" alt="" height="500px" width="500px">
+            </button>
+        </article>
 
-        <!--primera fila del menu de platos-->
-        <section class="main row">
-            <article class="col-xs-4">
-                <p>
-                    PORCION DE YUCA
-                </p>
-                <br>
-                <img src="~/images/yuca.jpg" class="img-responsive img-rounded" alt="">
-            </article>
+        <aside class="col-xs-4">
+            <p>
+                CARNE AHUMADA
+            </p>
+            <br>
+            <img src="~/images/carne ahumada.jpg" class="img-responsive img-rounded" alt="">
+        </aside>
 
-            <aside class="col-xs-4">
-                <p>
-                    CARNE AHUMADA
-                </p>
-                <br>
-                <img src="~/images/carne ahumada.jpg" class="img-responsive img-rounded" alt="">
-            </aside>
+        <aside class="col-xs-4">
+            <p>
+                CALDO DE CARACHAMA
+            </p>
+            <br>
+            <img src="~/images/carachama.jpg" class="img-responsive img-rounded" alt="">
+        </aside>
+    </section>
 
-            <aside class="col-xs-4">
-                <p>
-                    CALDO DE CARACHAMA
-                </p>
-                <br>
-                <img src="~/images/carachama.jpg" class="img-responsive img-rounded" alt="">
-            </aside>
-        </section>
+    <div class="row">
+        <!--segunda fila del menu de platos-->
+        <div class="col-xs-4">
+            <p>
+                TILAPIA FRITA
+            </p>
+            <br>
+            <img src="~/images/tilapia.jpg" class="img-responsive img-rounded" alt="">
+        </div>
 
-        <div class="row">
-            <!--segunda fila del menu de platos-->
-            <div class="col-xs-4">
-                <p>
-                    TILAPIA FRITA
-                </p>
-                <br>
-                <img src="~/images/tilapia.jpg" class="img-responsive img-rounded" alt="">
-            </div>
+        <div class="col-xs-4">
+            <p>
+                MAITO DE TILAPIA
+            </p>
+            <br>
+            <img src="~/images/maito de tilapia.jpg" class="img-responsive img-rounded" alt="">
+        </div>
 
-            <div class="col-xs-4">
-                <p>
-                    MAITO DE TILAPIA
-                </p>
-                <br>
-                <img src="~/images/maito de tilapia.jpg" class="img-responsive img-rounded" alt="">
-            </div>
+        <div class="col-xs-4">
+            <p>
+                MAITO DE POLLO
+            </p>
+            <br>
+            <img src="~/images/maito de pollo.jpg" class="img-responsive img-rounded" alt="">
+        </div>
 
-            <div class="col-xs-4">
-                <p>
-                    MAITO DE POLLO
-                </p>
-                <br>
-                <img src="~/images/maito de pollo.jpg" class="img-responsive img-rounded" alt="">
-            </div>
+        <!-- Trigger the modal with a button -->
+        @*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>*@
 
-            <!-- Trigger the modal with a button -->
-            @*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>*@
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
 
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Modal Header</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Some text in the modal.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
                     </div>
-
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+                        
+                    </div>
                 </div>
+
             </div>
         </div>
+    </div>
 
 </body>
 </html>

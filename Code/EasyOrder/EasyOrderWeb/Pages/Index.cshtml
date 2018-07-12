@@ -7,8 +7,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-     
+
     <script>
         function validateForm() {
             $.ajax({
@@ -23,7 +25,7 @@
                 success: function (result, status, jqXHR) {
                     window.location.replace("/PrincipalPage");
                     return result.allowed;
-                    
+
                 },
                 error(jqXHR, textStatus, errorThrown) {
                     window.location.replace("/Index");
@@ -90,19 +92,7 @@
             padding-top: 16px;
         }
 
-        /* Change styles for span and cancel button on extra small screens */
-        screen and (max-width: 300px) {
-            span .psw
-
-        {
-            display: block;
-            float: none;
-        }
-
-        .cancelbtn {
-            width: 100%;
-        }
-        }
+       
     </style>
 </head>
 <body>

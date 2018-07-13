@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-	ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home page";
 }
 <!DOCTYPE html>
 <html>
@@ -22,14 +22,18 @@
                 }),
                 dataType: 'json',
                 contentType: "application/json",
+                async: false,
                 success: function (result, status, jqXHR) {
-                    window.location.replace("/PrincipalPage");
-                    return result.allowed;
+                    if (result.allowed) {
+                        targetUrl.value = "/PrincipalPage";
+                    }
+                    else {
+                        targetUrl.value = "/Index";
 
+                    }
                 },
                 error(jqXHR, textStatus, errorThrown) {
-                    window.location.replace("/Index");
-                    return false;
+                    targetUrl.value = "/Index";
                 }
             });
         }
@@ -91,8 +95,6 @@
             float: right;
             padding-top: 16px;
         }
-
-       
     </style>
 </head>
 <body>

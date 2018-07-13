@@ -47,7 +47,7 @@
             </p>
             <br>
             <button class="btn btn-xs">
-                <img src="~/images/yuca.jpg" class="img-responsive img-rounded" alt="" height="500px" width="500px">
+                <img src="~/images/yuca.jpg" class="img-responsive img-rounded"  data-toggle="modal" data-target="#yucaModal" alt="" height="500px" width="500px">
             </button>
         </article>
 
@@ -57,7 +57,7 @@
             </p>
             <br>
             <button class="btn btn-xs">
-                <img src="~/images/carne ahumada.jpg" class="img-responsive img-rounded" alt="" height="500px" width="500px">
+                <img src="~/images/carne ahumada.jpg" class="img-responsive img-rounded"  data-toggle="modal" data-target="#carneModal" alt="" height="500px" width="500px">
             </button>
         </aside>
 
@@ -67,7 +67,7 @@
             </p>
             <br>
             <button class="btn btn-xs">
-                <img src="~/images/carachama.jpg" class="img-responsive img-rounded" alt="" height="500px" width="500px">
+                <img src="~/images/carachama.jpg" class="img-responsive img-rounded"  data-toggle="modal" data-target="#carachamaModal" alt="" height="500px" width="500px">
             </button>
         </aside>
     </section>
@@ -80,7 +80,7 @@
             </p>
             <br>
             <button class="btn btn-xs">
-                <img src="~/images/tilapia.jpg" class="img-responsive img-rounded" alt="" height="500px" width="500px">
+                <img src="~/images/tilapia.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#tilapiafritaModal" alt="" height="500px" width="500px">
             </button>
         </div>
 
@@ -90,7 +90,7 @@
             </p>
             <br>
             <button class="btn btn-xs">
-                <img src="~/images/maito de tilapia.jpg" class="img-responsive img-rounded" alt="" height="500px" width="500px">
+                <img src="~/images/maito de tilapia.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#maitotilapiaModal" alt="" height="500px" width="500px">
             </button>
         </div>
 
@@ -100,29 +100,139 @@
             </p>
             <br>
             <button class="btn btn-xs">
-                <img src="~/images/maito de pollo.jpg" class="img-responsive img-rounded" alt="" height="500px" width="500px">
+                <img src="~/images/maito de pollo.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#maitopolloModal" alt="" height="500px" width="500px">
             </button>
         </div>
 
         <!-- Trigger the modal with a button -->
         @*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>*@
 
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
+        <!-- Modal de la porcion de yuca -->
+        <div class="modal fade" id="yucaModal" role="dialog">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
+                        <h4 class="modal-title">Yucas fritas</h4>
                     </div>
                     <div class="modal-body">
                         <p>Some text in the modal.</p>
                     </div>
                     <div class="modal-footer">
                         @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
-                        
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal de carne ahumada -->
+        <div class="modal fade" id="carneModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Carne ahumada</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal del caldo de carachama -->
+        <div class="modal fade" id="carachamaModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Caldo de carachama</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal de la tilapia frita -->
+        <div class="modal fade" id="tilapiafritaModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Tilapia frita</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal del maito de tilapia -->
+        <div class="modal fade" id="maitotilapiaModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Maito de tilapia</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal del maito de pollo -->
+        <div class="modal fade" id="maitopolloModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Maito de pollo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+
                     </div>
                 </div>
 

@@ -12,7 +12,38 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    
+
+    <script>
+        function validateForm() {
+            $.ajax({
+                url: "/api/user/login",
+                method: "POST",
+                data: JSON.stringify({
+                    UserName: $("#nickname").val(),
+                    Password: $("#password").val(),
+                    FullName: $("#fullname").val(),
+                    CI: $("#ci").val(),
+                    PhoneNumber: $("#phone").val()
+                }),
+                dataType: 'json',
+                contentType: "application/json",
+                async: false,
+                success: function (result, status, jqXHR) {
+                    if (result.allowed) {
+                        targetUrl.value = "/Index";
+                    }
+                    else {
+                        targetUrl.value = "/RegisterPage";
+
+                    }
+                },
+                error(jqXHR, textStatus, errorThrown) {
+                    targetUrl.value = "/RegisterPage";
+                }
+            });
+        }
+    </script>
+
     <style>
         .colorgraph {
             height: 5px;
@@ -38,10 +69,10 @@
         .cancelbtn {
             background-color: #f44336;
         }
+
         .cancelbtn {
             background-color: dodgerblue;
         }
-        
     </style>
 </head>
 <body>
@@ -51,15 +82,18 @@
                 <form role="form">
                     <h2>Registrate <small>Es un placer contar con tu ayuda.</small></h2>
                     <hr class="colorgraph">
+                    <div class="form-group">
+                        <input type="text" name="fullname" id="fullname" class="form-control input-lg" placeholder="Apellidos y nombres" tabindex="1">
+                    </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="Nombre" tabindex="1">
+                                <input type="text" name="ci" id="ci" class="form-control input-lg" placeholder="Cédula" tabindex="2">
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Apellido" tabindex="2">
+                                <input type="text" name="phone" id="phone" class="form-control input-lg" placeholder="Celular" tabindex="3">
                             </div>
                         </div>
                     </div>
@@ -79,23 +113,18 @@
                         </div>
                     </div>
                     @*<div class="row">
-                        <div class="col-xs-4 col-sm-3 col-md-3">
-                            <span class="button-checkbox">
-                                <button type="button" class="btn" data-color="info" tabindex="7">I Agree</button>
-                                <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
-                            </span>
-                        </div>
-                        <div class="col-xs-8 col-sm-9 col-md-9">
-                            By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
-                        </div>
-                    </div>*@
+            <div class="col-xs-4 col-sm-3 col-md-3">
+                <span class="button-checkbox">
+                    <button type="button" class="btn" data-color="info" tabindex="7">I Agree</button>
+                    <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
+                </span>
+            </div>
+            <div class="col-xs-8 col-sm-9 col-md-9">
+                By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
+            </div>
+        </div>*@
 
                     <hr class="colorgraph">
-
-                    @*<div class="row">
-                        <div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-lg btn-block" tabindex="7"></div>
-                        <div class="col-xs-12 col-md-6"><a href="/index" class="btn btn-default btn-block btn-lg">Ingresar</a></div>
-                    </div>*@
                 </form>
             </div>
         </div>

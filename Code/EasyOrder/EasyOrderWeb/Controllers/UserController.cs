@@ -88,8 +88,8 @@ namespace EasyOrderWeb.Controllers
         private bool registeredUser(RegisterCredential user)
         {
             var iduser = _context.Empleado.FirstOrDefault(x => x.Username == user.UserName);
-            if (iduser != null) return false;
-            else return true;
+            if (iduser != null) return true;
+            else return false;
         }
 
         //add a new register to 'Persona' table
@@ -101,7 +101,6 @@ namespace EasyOrderWeb.Controllers
                        Nombrepersona = newUser.FullName,
                        Cedulapersona = newUser.CI,
                        Telefonopersona = newUser.PhoneNumber,
-                       Cumpleanospersona = null,
                        Idpersona = Guid.NewGuid()
                    });
 

@@ -1,14 +1,16 @@
 ﻿@page
 @model IndexModel
 @{
-	ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home page";
 }
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-     
+
     <script>
         function validateForm() {
             $.ajax({
@@ -20,14 +22,18 @@
                 }),
                 dataType: 'json',
                 contentType: "application/json",
+                async: false,
                 success: function (result, status, jqXHR) {
-                    window.location.replace("/PrincipalPage");
-                    return result.allowed;
-                    
+                    if (result.allowed) {
+                        targetUrl.value = "/PrincipalPage";
+                    }
+                    else {
+                        targetUrl.value = "/Index";
+
+                    }
                 },
                 error(jqXHR, textStatus, errorThrown) {
-                    window.location.replace("/Index");
-                    return false;
+                    targetUrl.value = "/Index";
                 }
             });
         }
@@ -89,20 +95,6 @@
             float: right;
             padding-top: 16px;
         }
-
-        /* Change styles for span and cancel button on extra small screens */
-        screen and (max-width: 300px) {
-            span .psw
-
-        {
-            display: block;
-            float: none;
-        }
-
-        .cancelbtn {
-            width: 100%;
-        }
-        }
     </style>
 </head>
 <body>
@@ -114,7 +106,7 @@
 
         <div class="container">
             <label for="uname"><b>Usuario</b></label>
-            <input id="username" type="text" placeholder="Ingrese su usuario o email" name="uname" required>
+            <input id="username" type="text" placeholder="Ingrese su usuario" name="uname" required>
 
             <label for="psw"><b>Constraseña</b></label>
             <input id="password" type="password" placeholder="Ingrese su contraseña" name="psw" required>

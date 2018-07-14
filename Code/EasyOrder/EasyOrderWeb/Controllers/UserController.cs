@@ -67,8 +67,7 @@ namespace EasyOrderWeb.Controllers
             if (registeredUser(newUser)) return new Response { Allowed = false, Message = "The Username is already in use" };
             //search in the DB if the person has been registered already, if not, he or she will be added 
             var existingPerson =
-                _context.Persona.Where(x => x.Cedulapersona == newUser.CI && x.Nombrepersona == newUser.FullName).
-                Select(x => x.Idpersona).FirstOrDefault();
+                _context.Persona.FirstOrDefault(x => x.Cedulapersona == newUser.CI && x.Nombrepersona == newUser.FullName);
             if (existingPerson == null)
             {
                 addPerson(newUser);

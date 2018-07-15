@@ -70,10 +70,14 @@ namespace EasyOrderWeb.Controllers
                 _context.Persona.FirstOrDefault(x => x.Cedulapersona == newUser.CI && x.Nombrepersona == newUser.FullName);
             if (existingPerson == null)
             {
+                //if the person doesn't exists, it's registered in the DB
                 addPerson(newUser);
+                //and an employee is added too
+                addEmployee(newUser);
             }
             else
             {
+                //if the person has been already registered, it will be only necesary to add the employee
                 addEmployee(newUser);
             }
             return new Response

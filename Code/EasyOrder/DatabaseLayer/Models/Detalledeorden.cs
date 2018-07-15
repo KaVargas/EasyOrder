@@ -7,6 +7,7 @@ namespace DatabaseLayer.Models
     {
         public Guid Idorden { get; set; }
         public Guid Idproducto { get; set; }
+        public Guid Iddetalle { get; set; }
 
         public Orden IdordenNavigation { get; set; }
         public Producto IdproductoNavigation { get; set; }

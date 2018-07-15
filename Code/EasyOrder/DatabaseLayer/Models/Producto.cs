@@ -14,6 +14,7 @@ namespace DatabaseLayer.Models
         public string Nombreproducto { get; set; }
         public string Descripcionproducto { get; set; }
         public double Precioproducto { get; set; }
+        public int? Disponibilidadproducto { get; set; }
 
         public ICollection<Detalledeorden> Detalledeorden { get; set; }
     }

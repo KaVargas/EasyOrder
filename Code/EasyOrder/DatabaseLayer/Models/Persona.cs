@@ -13,7 +13,6 @@ namespace DatabaseLayer.Models
         public string Nombrepersona { get; set; }
         public string Cedulapersona { get; set; }
         public string Telefonopersona { get; set; }
-        public DateTime? Cumpleanospersona { get; set; }
         public Guid Idpersona { get; set; }
 
         public ICollection<Empleado> Empleado { get; set; }

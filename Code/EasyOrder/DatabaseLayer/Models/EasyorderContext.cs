@@ -23,7 +23,7 @@ namespace DatabaseLayer.Models
         {
             modelBuilder.Entity<Detalledeorden>(entity =>
             {
-                entity.HasKey(e => new { e.Idorden, e.Idproducto });
+                entity.HasKey(e => new { e.Idorden, e.Idproducto, e.Iddetalle });
 
                 entity.ToTable("DETALLEDEORDEN");
 
@@ -36,6 +36,8 @@ namespace DatabaseLayer.Models
                 entity.Property(e => e.Idorden).HasColumnName("IDORDEN");
 
                 entity.Property(e => e.Idproducto).HasColumnName("IDPRODUCTO");
+
+                entity.Property(e => e.Iddetalle).HasColumnName("IDDETALLE");
 
                 entity.HasOne(d => d.IdordenNavigation)
                     .WithMany(p => p.Detalledeorden)
@@ -68,13 +70,9 @@ namespace DatabaseLayer.Models
 
                 entity.Property(e => e.Idrestaurante).HasColumnName("IDRESTAURANTE");
 
-                entity.Property(e => e.Password)
-                    .HasColumnName("PASSWORD")
-                    .HasColumnType("char(32)");
+                entity.Property(e => e.Password).HasColumnName("PASSWORD");
 
-                entity.Property(e => e.Username)
-                    .HasColumnName("USERNAME")
-                    .HasColumnType("char(32)");
+                entity.Property(e => e.Username).HasColumnName("USERNAME");
 
                 entity.HasOne(d => d.IdpersonaNavigation)
                     .WithMany(p => p.Empleado)
@@ -108,8 +106,6 @@ namespace DatabaseLayer.Models
 
                 entity.Property(e => e.Numeromesa).HasColumnName("NUMEROMESA");
 
-                entity.Property(e => e.Preciototal).HasColumnName("PRECIOTOTAL");
-
                 entity.HasOne(d => d.Id)
                     .WithMany(p => p.Orden)
                     .HasForeignKey(d => new { d.Idpersona, d.Idempleado })
@@ -127,21 +123,11 @@ namespace DatabaseLayer.Models
                     .HasColumnName("IDPERSONA")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Cedulapersona)
-                    .HasColumnName("CEDULAPERSONA")
-                    .HasColumnType("char(32)");
+                entity.Property(e => e.Cedulapersona).HasColumnName("CEDULAPERSONA");
 
-                entity.Property(e => e.Cumpleanospersona)
-                    .HasColumnName("CUMPLEANOSPERSONA")
-                    .HasColumnType("datetime");
+                entity.Property(e => e.Nombrepersona).HasColumnName("NOMBREPERSONA");
 
-                entity.Property(e => e.Nombrepersona)
-                    .HasColumnName("NOMBREPERSONA")
-                    .HasColumnType("char(32)");
-
-                entity.Property(e => e.Telefonopersona)
-                    .HasColumnName("TELEFONOPERSONA")
-                    .HasColumnType("char(10)");
+                entity.Property(e => e.Telefonopersona).HasColumnName("TELEFONOPERSONA");
             });
 
             modelBuilder.Entity<Producto>(entity =>
@@ -154,13 +140,11 @@ namespace DatabaseLayer.Models
                     .HasColumnName("IDPRODUCTO")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Descripcionproducto)
-                    .HasColumnName("DESCRIPCIONPRODUCTO")
-                    .HasColumnType("char(256)");
+                entity.Property(e => e.Descripcionproducto).HasColumnName("DESCRIPCIONPRODUCTO");
 
-                entity.Property(e => e.Nombreproducto)
-                    .HasColumnName("NOMBREPRODUCTO")
-                    .HasColumnType("char(32)");
+                entity.Property(e => e.Disponibilidadproducto).HasColumnName("DISPONIBILIDADPRODUCTO");
+
+                entity.Property(e => e.Nombreproducto).HasColumnName("NOMBREPRODUCTO");
 
                 entity.Property(e => e.Precioproducto).HasColumnName("PRECIOPRODUCTO");
             });
@@ -175,23 +159,17 @@ namespace DatabaseLayer.Models
                     .HasColumnName("IDRESTAURANTE")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Direccionrestaurante)
-                    .HasColumnName("DIRECCIONRESTAURANTE")
-                    .HasColumnType("char(128)");
+                entity.Property(e => e.Direccionrestaurante).HasColumnName("DIRECCIONRESTAURANTE");
 
-                entity.Property(e => e.Fonorestaurante)
-                    .HasColumnName("FONORESTAURANTE")
-                    .HasColumnType("char(10)");
+                entity.Property(e => e.Fonorestaurante).HasColumnName("FONORESTAURANTE");
 
                 entity.Property(e => e.Nombrerestaurante)
                     .IsRequired()
-                    .HasColumnName("NOMBRERESTAURANTE")
-                    .HasColumnType("char(64)");
+                    .HasColumnName("NOMBRERESTAURANTE");
 
                 entity.Property(e => e.Rucrestaurante)
                     .IsRequired()
-                    .HasColumnName("RUCRESTAURANTE")
-                    .HasColumnType("char(16)");
+                    .HasColumnName("RUCRESTAURANTE");
             });
 
             modelBuilder.Entity<Users>(entity =>

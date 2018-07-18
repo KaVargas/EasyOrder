@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EasyOrderWeb.Controllers
 {
+    //The following class has the objective to crontroll everything that's user related in the web page
     [Produces("application/json")]
     [Route("api/user")]
     public class UserController : Controller
@@ -90,8 +91,11 @@ namespace EasyOrderWeb.Controllers
         //search the DB for an user with the same username
         private bool registeredUser(RegisterCredential user)
         {
+            //retrieve the username from the database
             var iduser = _context.Empleado.FirstOrDefault(x => x.Username == user.UserName);
+            //if it's found return true
             if (iduser != null) return true;
+            //else return false
             else return false;
         }
 
@@ -124,6 +128,39 @@ namespace EasyOrderWeb.Controllers
                          Idempleado = Guid.NewGuid()
                      });
             _context.SaveChanges();
+        }
+
+        //function for validating an Ecuadors citizen ID
+        [HttpPost]
+        [Route("validateci")]
+        public Response validateCI(string CI)
+        {
+            int isNumeric;
+            var total = 0;
+            const int sizeofCI = 10;
+            int[] coeficients = { 2, 1, 2, 1, 2, 1, 2, 1, 2 };
+            const int provinces = 24;
+            const int thirdDigit = 6;
+            if(int.TryParse(CI, out isNumeric) && CI.Length == sizeofCI)
+            {
+                var province = Convert.ToInt32(string.Concat(CI[0], CI[1], string.Empty));
+                var digit = Convert.ToInt32(CI[2] + string.Empty);
+                if((province > 0 && province <= provinces) && digit < thirdDigit)
+                {
+                    var valDigit = Convert.ToInt32(CI[9] + string.Empty);
+                    for(var k = 0; k < coeficients.Length; k++)
+                    {
+                        var value = Convert.ToInt32(coeficients[k] + string.Empty) 
+                            * Convert.ToInt32(CI[k] + string.Empty);
+                        total = value >= 10 ? total + (value - 9) : total + value;
+                    }
+                    var valDigitobtained = total >= 10 ? (total % 10) != 0 ? 
+                        10 - (total % 10) : (total % 10) : total;
+                    if (valDigit == valDigitobtained) return new Response { Allowed = true, Message = "CI is correct" };
+                    else return new Response { Allowed = false, Message = "incorrect CI" };
+                }
+            }
+            return new Response { Allowed = false, Message = "incorrect CI" };
         }
     }
 }

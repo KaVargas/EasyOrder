@@ -44,6 +44,34 @@
         }
     </script>
 
+    <script>
+        function validateCI() {
+            $.ajax({
+                url: "/api/user/validateci",
+                method: "POST",
+                data: JSON.stringify({
+                    CI: $("#ci").val()
+                }),
+                dataType: 'json',
+                contentType: "application/json",
+                async: false,
+                success: function (result, status, jqXHR) {
+                    if (result.allowed) {
+                        validateForm();
+                        targetUrl.value = "/RegisterPage2";
+                    }
+                    else {
+                        targetUrl.value = "/Error";
+
+                    }
+                },
+                error(jqXHR, textStatus, errorThrown) {
+                    targetUrl.value = "/RegisterPage";
+                }
+            });
+        }
+    </script>
+
     <style>
         .colorgraph {
             height: 5px;

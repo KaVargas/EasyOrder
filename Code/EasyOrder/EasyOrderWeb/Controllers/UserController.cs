@@ -63,6 +63,7 @@ namespace EasyOrderWeb.Controllers
         [Route("Register")]
         public Response Register([FromBody]RegisterCredential newUser)
         {
+            if (!validateCI(newUser.CI)) return new Response { Allowed = false, Message = "Cédula incorrecta"};
             //it's only possible to have one unique username per employee
             //validate if the username has been occupied by other employee, if true, ask for another username
             if (registeredUser(newUser)) return new Response { Allowed = false, Message = "The Username is already in use" };
@@ -131,11 +132,8 @@ namespace EasyOrderWeb.Controllers
         }
 
         //function for validating an Ecuadors citizen ID
-        [HttpPost]
-        [Route("validateci")]
-        public Response validateCI(RegisterCredential NewUser)
+        public bool validateCI(string CI)
         {
-            string CI = NewUser.CI;
             int isNumeric;
             var total = 0;
             const int sizeofCI = 10;
@@ -157,11 +155,11 @@ namespace EasyOrderWeb.Controllers
                     }
                     var valDigitobtained = total >= 10 ? (total % 10) != 0 ? 
                         10 - (total % 10) : (total % 10) : total;
-                    if (valDigit == valDigitobtained) return new Response { Allowed = true, Message = "CI is correct" };
-                    else return new Response { Allowed = false, Message = "incorrect CI" };
+                    if (valDigit == valDigitobtained) return true;
+                    else return false;
                 }
             }
-            return new Response { Allowed = false, Message = "incorrect CI" };
+            return false;
         }
     }
 }

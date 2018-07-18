@@ -133,8 +133,9 @@ namespace EasyOrderWeb.Controllers
         //function for validating an Ecuadors citizen ID
         [HttpPost]
         [Route("validateci")]
-        public Response validateCI(string CI)
+        public Response validateCI(RegisterCredential NewUser)
         {
+            string CI = NewUser.CI;
             int isNumeric;
             var total = 0;
             const int sizeofCI = 10;

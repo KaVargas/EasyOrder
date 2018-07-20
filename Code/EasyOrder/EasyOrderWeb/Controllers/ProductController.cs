@@ -30,7 +30,8 @@ namespace EasyOrderWeb.Controllers
                     Descripcionproducto = newProductinfo.productDescription,
                     Nombreproducto = newProductinfo.productName,
                     Precioproducto = newProductinfo.productPrice,
-                    Idproducto = Guid.NewGuid()
+                    Idproducto = Guid.NewGuid(),
+                    Disponibilidadproducto = newProductinfo.productAvailability
                 });
             _context.SaveChanges();
             return new Response

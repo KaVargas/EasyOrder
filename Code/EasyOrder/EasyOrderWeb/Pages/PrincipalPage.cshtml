@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     @*fin de lo necesario*@
 
     <style>
@@ -44,12 +45,9 @@
         <article class="col-xs-4">
             <p>
                 PORCION DE YUCA
-                <a href="#"><span class="badge">3</span></a><br>
-
-                <div class="box">
-                    <input type="number" value="0">
-                </div>
+                <span><input type="number" tabindex="1" id="yucaNumber" class="form-control input-sm"></span>
             </p>
+            
             <button class="btn btn-xs">
                 <img src="~/images/yuca.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#yucaModal" alt="" height="500px" width="500px">
             </button>
@@ -57,14 +55,15 @@
         </article>
 
         <aside class="col-xs-4">
-            <p>
-                CARNE AHUMADA
-                <a href="#"><span class="badge">0</span></a><br>
 
-                <div class="box">
-                    <input type="number" value="0">
-                </div>
-            </p>
+            <div ng-app="myApp" ng-controller="myCtrl">
+                <p>
+                    CARNE AHUMADA
+                    <span class="badge">{{ count }}</span>
+                </p>
+                <button ng-click="myFunction()">+</button>
+                <button ng-click="myFunction2()">-</button>
+            </div>
             <button class="btn btn-xs">
                 <img src="~/images/carne ahumada.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#carneModal" alt="" height="500px" width="500px">
             </button>
@@ -152,26 +151,6 @@
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <div ng-app="myApp" ng-controller="myCtrl">
-
-                            <button ng-click="myFunction()" class="btn btn-lg">+</button>
-                            <button ng-click="myFunction2()" class="btn btn-lg">-</button>
-                            <p>{{ count }}</p>
-
-                        </div>
-
-                        <script>
-                            var app = angular.module('myApp', []);
-                            app.controller('myCtrl', function ($scope) {
-                                $scope.count = 0;
-                                $scope.myFunction = function () {
-                                    $scope.count++;
-                                }
-                                $scope.myFunction2 = function () {
-                                    $scope.count--;
-                                }
-                            });
-                        </script>
 
                     </div>
                 </div>

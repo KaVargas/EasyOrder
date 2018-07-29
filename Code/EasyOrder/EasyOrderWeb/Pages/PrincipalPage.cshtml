@@ -54,24 +54,24 @@
 
 </head>
 
-    <body>
-        <header>
-            <div class="container">
-                <div class="row">
-                    <div clas="col-md-2">
-                        <h1>MENU COMIDAS</h1>
-                    </div>
-
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div clas="col-md-2">
+                    <h1>MENU COMIDAS</h1>
                 </div>
+
             </div>
-        </header>
-
-        <!--primera fila del menu de platos-->
-        <div class="btn-group btn-group-justified">
-            <a href="#" class="btn btn-primary" onclick="Mostrar_Comidas()">Comidas</a>
-            <a href="#" class="btn btn-primary" onclick="Mostrar_Bebidas()">Bebidas</a>
         </div>
+    </header>
 
+    <!--primera fila del menu de platos-->
+    <div class="btn-group btn-group-justified">
+        <a href="#" class="btn btn-primary" onclick="Mostrar_Comidas()">Comidas</a>
+        <a href="#" class="btn btn-primary" onclick="Mostrar_Bebidas()">Bebidas</a>
+    </div>
+    <section id="comidas">
         <!--saltos de linea aqui van los botones de Estado, Modificar y del visto-->
         <br />
         <section class="main row">
@@ -109,411 +109,411 @@
         <br />
 
         <!--empiezo con la seccion de comidas-->
-        <section id="comidas">
-            <section class="main row">
-                <article class="col-xs-4">
-                    <p>
-                        PORCION DE YUCA
-                        <span><input type="number" tabindex="1" id="yucaNumber" class="form-control input-sm" min="0"></span>
-                    </p>
 
-                    <button class="btn btn-xs">
-                        <img src="~/images/yuca.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#yucaModal" alt="" height="500px" width="500px">
-                    </button>
-                    <br>
-                </article>
+        <section class="main row">
+            <article class="col-xs-4">
+                <p>
+                    PORCION DE YUCA
+                    <span><input type="number" tabindex="1" id="yucaNumber" class="form-control input-sm" min="0"></span>
+                </p>
 
-                <aside class="col-xs-4">
+                <button class="btn btn-xs">
+                    <img src="~/images/yuca.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#yucaModal" alt="" height="500px" width="500px">
+                </button>
+                <br>
+            </article>
 
-                    <p>
-                        CARNE AHUMADA
-                        <span><input type="number" tabindex="2" id="carneNumber" class="form-control input-sm" min="0"></span>
-                    </p>
-                    <button class="btn btn-xs">
-                        <img src="~/images/carne ahumada.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#carneModal" alt="" height="500px" width="500px">
-                    </button>
-                    <br>
-                </aside>
+            <aside class="col-xs-4">
 
-                <aside class="col-xs-4">
-                    <p>
-                        CALDO DE CARACHAMA
-                        <span><input type="number" tabindex="3" id="carachamaNumber" class="form-control input-sm" min="0"></span>
-                    </p>
-                    <button class="btn btn-xs">
-                        <img src="~/images/carachama.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#carachamaModal" alt="" height="500px" width="500px">
-                    </button>
-                    <br>
-                </aside>
-            </section>
+                <p>
+                    CARNE AHUMADA
+                    <span><input type="number" tabindex="2" id="carneNumber" class="form-control input-sm" min="0"></span>
+                </p>
+                <button class="btn btn-xs">
+                    <img src="~/images/carne ahumada.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#carneModal" alt="" height="500px" width="500px">
+                </button>
+                <br>
+            </aside>
 
-            <div class="row">
-                <!--segunda fila del menu de platos-->
-                <div class="col-xs-4">
-                    <p>
-                        TILAPIA FRITA
-                        <span><input type="number" tabindex="4" id="tilapiaFritaNumber" class="form-control input-sm" min="0"></span>
-                    </p>
-                    <button class="btn btn-xs">
-                        <img src="~/images/tilapia.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#tilapiafritaModal" alt="" height="500px" width="500px">
-                    </button>
-                    <br>
-                </div>
+            <aside class="col-xs-4">
+                <p>
+                    CALDO DE CARACHAMA
+                    <span><input type="number" tabindex="3" id="carachamaNumber" class="form-control input-sm" min="0"></span>
+                </p>
+                <button class="btn btn-xs">
+                    <img src="~/images/carachama.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#carachamaModal" alt="" height="500px" width="500px">
+                </button>
+                <br>
+            </aside>
+        </section>
 
-                <div class="col-xs-4">
-                    <p>
-                        MAITO DE TILAPIA
-                        <span><input type="number" tabindex="5" id="maitoTilapiaNumber" class="form-control input-sm" min="0"></span>
-                    </p>
-                    <button class="btn btn-xs">
-                        <img src="~/images/maito de tilapia.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#maitotilapiaModal" alt="" height="500px" width="500px">
-                    </button>
-                    <br>
-                </div>
+        <div class="row">
+            <!--segunda fila del menu de platos-->
+            <div class="col-xs-4">
+                <p>
+                    TILAPIA FRITA
+                    <span><input type="number" tabindex="4" id="tilapiaFritaNumber" class="form-control input-sm" min="0"></span>
+                </p>
+                <button class="btn btn-xs">
+                    <img src="~/images/tilapia.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#tilapiafritaModal" alt="" height="500px" width="500px">
+                </button>
+                <br>
+            </div>
 
-                <div class="col-xs-4">
-                    <p>
-                        MAITO DE POLLO
-                        <span><input type="number" tabindex="6" id="maitoPolloNumber" class="form-control input-sm" min="0"></span>
-                    </p>
-                    <button class="btn btn-xs">
-                        <img src="~/images/maito de pollo.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#maitopolloModal" alt="" height="500px" width="500px">
-                    </button>
-                    <br>
-                </div>
+            <div class="col-xs-4">
+                <p>
+                    MAITO DE TILAPIA
+                    <span><input type="number" tabindex="5" id="maitoTilapiaNumber" class="form-control input-sm" min="0"></span>
+                </p>
+                <button class="btn btn-xs">
+                    <img src="~/images/maito de tilapia.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#maitotilapiaModal" alt="" height="500px" width="500px">
+                </button>
+                <br>
+            </div>
 
-                <!-- Modal de la porcion de yuca -->
-                <div class="modal fade" id="yucaModal" role="dialog">
-                    <div class="modal-dialog">
+            <div class="col-xs-4">
+                <p>
+                    MAITO DE POLLO
+                    <span><input type="number" tabindex="6" id="maitoPolloNumber" class="form-control input-sm" min="0"></span>
+                </p>
+                <button class="btn btn-xs">
+                    <img src="~/images/maito de pollo.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#maitopolloModal" alt="" height="500px" width="500px">
+                </button>
+                <br>
+            </div>
 
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Yucas fritas</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>
-                                    La yuca frita es una receta muy conocida y tradicional en muchos países sudamericanos.
-                                    Aunque en nuestro país no es muy popular, te traemos esta receta detallada paso a paso
-                                    para que te animes a probarla.
-                                </p>
-                            </div>
-                            <div class="modal-footer">
+            <!-- Modal de la porcion de yuca -->
+            <div class="modal fade" id="yucaModal" role="dialog">
+                <div class="modal-dialog">
 
-                            </div>
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Yucas fritas</h4>
                         </div>
-
-                    </div>
-                </div>
-
-                <!-- Modal de carne ahumada -->
-                <div class="modal fade" id="carneModal" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Carne ahumada</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>
-                                    INGREDIENTES
-                                </p>
-                                <ul>
-                                    <li type="disc">
-                                        Carne de res.
-                                    </li>
-                                    <li type="disc">
-                                        Arroz.
-                                    </li>
-                                    <li type="disc">
-                                        Platano verde.
-                                    </li>
-                                    <li type="disc">
-                                        Cebolla y aliños.
-                                    </li>
-                                </ul>
-                                <p>
-                                    Es la mejor forma de resaltar el sabor intenso y suculento del lomo, de las
-                                    costillas u otros cortes de carne que sencillamente saben mejor cuando se
-                                    ahúman hasta que la carne se desprende de los huesos.
-                                </p>
-                                <p>
-                                    Puedes poner la carne en salmuera primero o aliñarla, usar un ahumador u horno
-                                    eléctrico para ahumar de última tecnología o un asador o parrilla a carbón
-                                    vegetal y elegir de entre una variedad de maderas, cada una de las cuales
-                                    le da diferentes sabores a la carne.
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
-
-                            </div>
+                        <div class="modal-body">
+                            <p>
+                                La yuca frita es una receta muy conocida y tradicional en muchos países sudamericanos.
+                                Aunque en nuestro país no es muy popular, te traemos esta receta detallada paso a paso
+                                para que te animes a probarla.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
 
                         </div>
-
                     </div>
-                </div>
 
-                <!-- Modal del caldo de carachama -->
-                <div class="modal fade" id="carachamaModal" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Caldo de carachama</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>
-                                    INGREDIENTES
-                                </p>
-
-                                <ul>
-                                    <li type="disc">
-                                        Un kilo de carachama.
-                                    </li>
-                                    <li type="disc">
-                                        Dos litros de agua.
-                                    </li>
-                                    <li type="disc">
-                                        Seis hojas de sacha culantro.
-                                    </li>
-                                    <li type="disc">
-                                        Un ají dulce.
-                                    </li>
-                                    <li type="disc">
-                                        Una cucharada de ajos molido.
-                                    </li>
-                                    <li type="disc">
-                                        Sal al gusto.
-                                    </li>
-                                </ul>
-                                <p>
-                                    Lavar bien las carachamas y cortarlos por la mitad y poner a hervir por media hora,
-                                    junto con el ajo molido,y al final agregar el ají dulce en tiritas y el sacha culantro.
-                                    Opcionalmente puede agregar al bajar un huevo batido.
-                                    Se sirve acompañado con yuca o plátano verde sancochado y por supuesto con su ají
-                                    charapita con cocona. Receta para seis platos.
-                                </p>
-
-                            </div>
-                            <div class="modal-footer">
-                                @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Modal de la tilapia frita -->
-                <div class="modal fade" id="tilapiafritaModal" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Tilapia frita</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>
-                                    INGREDIENTES
-                                </p>
-                                <ul>
-                                    <li type="disc">
-                                        Aceite de Girasol 1 Litro.
-                                    </li>
-                                    <li type="disc">
-                                        Harina de Trigo 1 Taza.
-                                    </li>
-                                    <li type="disc">
-                                        Limón 2 Unidades.
-                                    </li>
-                                    <li type="disc">
-                                        Tilapia 2 Unidades.
-                                    </li>
-                                </ul>
-                                <p>
-                                    La tilapia frita es una forma muy exquisita para disfrutar de esta clase de pescado,
-                                    ya que se puede utilizar para acompañar muchos otros platos, como arroz con coco
-                                    y patacones.
-                                </p>
-
-                            </div>
-                            <div class="modal-footer">
-                                @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Modal del maito de tilapia -->
-                <div class="modal fade" id="maitotilapiaModal" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Maito de tilapia</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>
-                                    INGREDIENTES
-                                </p>
-                                <ul>
-                                    <li type="disc">
-                                        Tilapia.
-                                    </li>
-                                    <li type="disc">
-                                        Hojas de yaki-panga.
-                                    </li>
-                                    <li type="disc">
-                                        Sal y pimienta negra al gusto.
-                                    </li>
-                                    <li type="disc">
-                                        Yuca o plátano verde cocinado para acompañar.
-                                    </li>
-                                </ul>
-                                <p>
-                                    Se limpia y se lava el pescado con limón y sal se adoba o aliña con sal, mostaza y ajo.
-                                    Dejar macerar  mínimo media hora, aparte se refríe la cebolla blanca con el achiote y
-                                    luego se colora el palmito picado.
-                                </p>
-                                <p>
-                                    Sobre la hoja de bijao o platanillo poner una capa del refrito y colocar el pescado.
-                                    Luego se rellena con el mismo refrito sobre y dentro del pescado. Finalmente se envuelve
-                                    en la hoja y se lo cierra con una piola y se lo coloca a la braza durante cinco minutos
-                                    de cada lado.
-                                </p>
-
-                            </div>
-                            <div class="modal-footer">
-                                @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Modal del maito de pollo -->
-                <div class="modal fade" id="maitopolloModal" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Maito de pollo</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>
-                                    INGREDIENTES
-                                </p>
-                                <ul>
-                                    <li type="disc">
-                                        1 taza de yuca cocida cortada en cubos.
-                                    </li>
-                                    <li type="disc">
-                                        Filetes de pollo.
-                                    </li>
-                                    <li type="disc">
-                                        Ají criollo finamente picado.
-                                    </li>
-                                    <li type="disc">
-                                        2 Hojas de bijao.
-                                    </li>
-                                    <li type="disc">
-                                        1 cucharadita de margarina Girasol.
-                                    </li>
-                                    <li type="disc">
-                                        ½ Pimiento verde cortado en tiras.
-                                    </li>
-                                    <li type="disc">
-                                        ½ cebolla paiteña cortada en tiras.
-                                    </li>
-                                    <li type="disc">
-                                        1 diente de ajo finamente.
-                                    </li>
-                                    <li type="disc">
-                                        1 cucharadita de Aceite.
-                                    </li>
-                                </ul>
-                                <p>
-                                    Aplastamos la yuca hasta obtener una masa homogénea.
-                                </p>
-                                <p>
-                                    Abrimos las hojas de bijao y  untamos con la margarina. Agregamos dentro de la hoja la
-                                    masa de yuca previamente realizada, el filete del pollo, agregamos el aceite, el piento
-                                    verde, la cebolla el ají y el ajo.
-                                </p>
-                                <p>
-                                    Cerramos la hoja y la cocinamos al vapor por aproximadamente 30 minutos.
-                                    Servimos inmediatamente.
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
-
-                            </div>
-
-                        </div>
-
-                    </div>
                 </div>
             </div>
+
+            <!-- Modal de carne ahumada -->
+            <div class="modal fade" id="carneModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Carne ahumada</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                INGREDIENTES
+                            </p>
+                            <ul>
+                                <li type="disc">
+                                    Carne de res.
+                                </li>
+                                <li type="disc">
+                                    Arroz.
+                                </li>
+                                <li type="disc">
+                                    Platano verde.
+                                </li>
+                                <li type="disc">
+                                    Cebolla y aliños.
+                                </li>
+                            </ul>
+                            <p>
+                                Es la mejor forma de resaltar el sabor intenso y suculento del lomo, de las
+                                costillas u otros cortes de carne que sencillamente saben mejor cuando se
+                                ahúman hasta que la carne se desprende de los huesos.
+                            </p>
+                            <p>
+                                Puedes poner la carne en salmuera primero o aliñarla, usar un ahumador u horno
+                                eléctrico para ahumar de última tecnología o un asador o parrilla a carbón
+                                vegetal y elegir de entre una variedad de maderas, cada una de las cuales
+                                le da diferentes sabores a la carne.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Modal del caldo de carachama -->
+            <div class="modal fade" id="carachamaModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Caldo de carachama</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                INGREDIENTES
+                            </p>
+
+                            <ul>
+                                <li type="disc">
+                                    Un kilo de carachama.
+                                </li>
+                                <li type="disc">
+                                    Dos litros de agua.
+                                </li>
+                                <li type="disc">
+                                    Seis hojas de sacha culantro.
+                                </li>
+                                <li type="disc">
+                                    Un ají dulce.
+                                </li>
+                                <li type="disc">
+                                    Una cucharada de ajos molido.
+                                </li>
+                                <li type="disc">
+                                    Sal al gusto.
+                                </li>
+                            </ul>
+                            <p>
+                                Lavar bien las carachamas y cortarlos por la mitad y poner a hervir por media hora,
+                                junto con el ajo molido,y al final agregar el ají dulce en tiritas y el sacha culantro.
+                                Opcionalmente puede agregar al bajar un huevo batido.
+                                Se sirve acompañado con yuca o plátano verde sancochado y por supuesto con su ají
+                                charapita con cocona. Receta para seis platos.
+                            </p>
+
+                        </div>
+                        <div class="modal-footer">
+                            @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Modal de la tilapia frita -->
+            <div class="modal fade" id="tilapiafritaModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Tilapia frita</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                INGREDIENTES
+                            </p>
+                            <ul>
+                                <li type="disc">
+                                    Aceite de Girasol 1 Litro.
+                                </li>
+                                <li type="disc">
+                                    Harina de Trigo 1 Taza.
+                                </li>
+                                <li type="disc">
+                                    Limón 2 Unidades.
+                                </li>
+                                <li type="disc">
+                                    Tilapia 2 Unidades.
+                                </li>
+                            </ul>
+                            <p>
+                                La tilapia frita es una forma muy exquisita para disfrutar de esta clase de pescado,
+                                ya que se puede utilizar para acompañar muchos otros platos, como arroz con coco
+                                y patacones.
+                            </p>
+
+                        </div>
+                        <div class="modal-footer">
+                            @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Modal del maito de tilapia -->
+            <div class="modal fade" id="maitotilapiaModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Maito de tilapia</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                INGREDIENTES
+                            </p>
+                            <ul>
+                                <li type="disc">
+                                    Tilapia.
+                                </li>
+                                <li type="disc">
+                                    Hojas de yaki-panga.
+                                </li>
+                                <li type="disc">
+                                    Sal y pimienta negra al gusto.
+                                </li>
+                                <li type="disc">
+                                    Yuca o plátano verde cocinado para acompañar.
+                                </li>
+                            </ul>
+                            <p>
+                                Se limpia y se lava el pescado con limón y sal se adoba o aliña con sal, mostaza y ajo.
+                                Dejar macerar  mínimo media hora, aparte se refríe la cebolla blanca con el achiote y
+                                luego se colora el palmito picado.
+                            </p>
+                            <p>
+                                Sobre la hoja de bijao o platanillo poner una capa del refrito y colocar el pescado.
+                                Luego se rellena con el mismo refrito sobre y dentro del pescado. Finalmente se envuelve
+                                en la hoja y se lo cierra con una piola y se lo coloca a la braza durante cinco minutos
+                                de cada lado.
+                            </p>
+
+                        </div>
+                        <div class="modal-footer">
+                            @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Modal del maito de pollo -->
+            <div class="modal fade" id="maitopolloModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Maito de pollo</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                INGREDIENTES
+                            </p>
+                            <ul>
+                                <li type="disc">
+                                    1 taza de yuca cocida cortada en cubos.
+                                </li>
+                                <li type="disc">
+                                    Filetes de pollo.
+                                </li>
+                                <li type="disc">
+                                    Ají criollo finamente picado.
+                                </li>
+                                <li type="disc">
+                                    2 Hojas de bijao.
+                                </li>
+                                <li type="disc">
+                                    1 cucharadita de margarina Girasol.
+                                </li>
+                                <li type="disc">
+                                    ½ Pimiento verde cortado en tiras.
+                                </li>
+                                <li type="disc">
+                                    ½ cebolla paiteña cortada en tiras.
+                                </li>
+                                <li type="disc">
+                                    1 diente de ajo finamente.
+                                </li>
+                                <li type="disc">
+                                    1 cucharadita de Aceite.
+                                </li>
+                            </ul>
+                            <p>
+                                Aplastamos la yuca hasta obtener una masa homogénea.
+                            </p>
+                            <p>
+                                Abrimos las hojas de bijao y  untamos con la margarina. Agregamos dentro de la hoja la
+                                masa de yuca previamente realizada, el filete del pollo, agregamos el aceite, el piento
+                                verde, la cebolla el ají y el ajo.
+                            </p>
+                            <p>
+                                Cerramos la hoja y la cocinamos al vapor por aproximadamente 30 minutos.
+                                Servimos inmediatamente.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--empiezo con la seccion de bebidas-->
+    <section id="bebidas">
+        <section class="main row">
+            <article class="col-xs-4">
+                <p>
+                    COLAS
+                    <span><input type="number" tabindex="1" id="yucaNumber" class="form-control input-sm" min="0"></span>
+                </p>
+
+                <button class="btn btn-xs">
+                    <img src="~/images/colas.png" class="img-responsive img-rounded" data-toggle="modal" data-target="#yucaModal" alt="" height="500px" width="500px">
+                </button>
+                <br>
+            </article>
+
+            <aside class="col-xs-4">
+
+                <p>
+                    GUAYUSAS
+                    <span><input type="number" tabindex="2" id="carneNumber" class="form-control input-sm" min="0"></span>
+                </p>
+                <button class="btn btn-xs">
+                    <img src="~/images/guayusa.png" class="img-responsive img-rounded" data-toggle="modal" data-target="#carneModal" alt="" height="500px" width="500px">
+                </button>
+                <br>
+            </aside>
+
+            <aside class="col-xs-4">
+                <p>
+                    AGUAS
+                    <span><input type="number" tabindex="3" id="carachamaNumber" class="form-control input-sm" min="0"></span>
+                </p>
+                <button class="btn btn-xs">
+                    <img src="~/images/aguas.png" class="img-responsive img-rounded" data-toggle="modal" data-target="#carachamaModal" alt="" height="500px" width="500px">
+                </button>
+                <br>
+            </aside>
         </section>
+    </section>
 
-        <!--empiezo con la seccion de bebidas-->
-        <section id="bebidas">
-            <section class="main row">
-                <article class="col-xs-4">
-                    <p>
-                        COLAS
-                        <span><input type="number" tabindex="1" id="yucaNumber" class="form-control input-sm" min="0"></span>
-                    </p>
-
-                    <button class="btn btn-xs">
-                        <img src="~/images/colas.png" class="img-responsive img-rounded" data-toggle="modal" data-target="#yucaModal" alt="" height="500px" width="500px">
-                    </button>
-                    <br>
-                </article>
-
-                <aside class="col-xs-4">
-
-                    <p>
-                        GUAYUSAS
-                        <span><input type="number" tabindex="2" id="carneNumber" class="form-control input-sm" min="0"></span>
-                    </p>
-                    <button class="btn btn-xs">
-                        <img src="~/images/guayusa.png" class="img-responsive img-rounded" data-toggle="modal" data-target="#carneModal" alt="" height="500px" width="500px">
-                    </button>
-                    <br>
-                </aside>
-
-                <aside class="col-xs-4">
-                    <p>
-                        AGUAS
-                        <span><input type="number" tabindex="3" id="carachamaNumber" class="form-control input-sm" min="0"></span>
-                    </p>
-                    <button class="btn btn-xs">
-                        <img src="~/images/aguas.png" class="img-responsive img-rounded" data-toggle="modal" data-target="#carachamaModal" alt="" height="500px" width="500px">
-                    </button>
-                    <br>
-                </aside>
-            </section>
-        </section>
-
-    </body>
+</body>
 </html>

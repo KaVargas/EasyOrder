@@ -8,18 +8,21 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 
+
 namespace EasyOrderWeb.Controllers
 {
+
     //The following class has the objective to crontroll everything that's user related in the web page
     [Produces("application/json")]
     [Route("api/user")]
+    
     public class UserController : Controller
     {
         private readonly EasyorderContext _context;
-        public UserController(EasyorderContext context)
-        {
-            _context = context;
-        }
+
+        public UserController(EasyorderContext context){ _context = context; }
+
+        private static int maxPhoneNumber = 10;
 
         //search the credentials in the database and gran access to the services if the credentials are found
         //if the are not found access will be denied
@@ -62,20 +65,28 @@ namespace EasyOrderWeb.Controllers
         #endregion
 
         //save the user related info in the DB for other services like login
+        //make validations of every sensitive data, like: name, phone and CI
         #region Register
             [HttpPost]
             [Route("Register")]
             public Response Register([FromBody]RegisterCredential newUser)
             {
                 if(validatefullName(newUser.FullName)) return new Response { Allowed = false, Message = "Los nombres no pueden contener números" };
+            
                 //validate the citizens CI
                 if (!validateCI(newUser.CI)) return new Response { Allowed = false, Message = "Cédula incorrecta"};
+            
+                //a phone number has 10 digits, and always begins with "09"
+                if (phoneNumberVal(newUser.PhoneNumber)) return new Response { Allowed = false, Message = "Número de teléfono incorrecto" };
+            
                 //it's only possible to have one unique username per employee
                 //validate if the username has been occupied by other employee, if true, ask for another username
                 if (registeredUser(newUser)) return new Response { Allowed = false, Message = "The Username is already in use" };
+            
                 //search in the DB if the person has been registered already, if not, he or she will be added 
                 var existingPerson =
                     _context.Persona.FirstOrDefault(x => x.Cedulapersona == newUser.CI && x.Nombrepersona == newUser.FullName);
+
                 if (existingPerson == null)
                 {
                     //if the person doesn't exists, it's registered in the DB
@@ -114,13 +125,13 @@ namespace EasyOrderWeb.Controllers
             private void addPerson(RegisterCredential newUser)
             {
                 _context.Persona.Add(
-                       new Persona
-                       {
-                           Nombrepersona = newUser.FullName,
-                           Cedulapersona = newUser.CI,
-                           Telefonopersona = newUser.PhoneNumber,
-                           Idpersona = Guid.NewGuid()
-                       });
+                        new Persona
+                        {
+                            Nombrepersona = newUser.FullName,
+                            Cedulapersona = newUser.CI,
+                            Telefonopersona = newUser.PhoneNumber,
+                            Idpersona = Guid.NewGuid()
+                        });
 
                 _context.SaveChanges();
             }
@@ -132,21 +143,21 @@ namespace EasyOrderWeb.Controllers
             {
 
                 _context.Empleado.Add(
-                         new Empleado
-                         {
-                             Username = newUser.UserName,
-                             Password = newUser.Password,
-                             Idrestaurante = _context.Restaurante.Where(x => x.Nombrerestaurante == "Uchu Manka").Select(x => x.Idrestaurante).FirstOrDefault(),
-                             Idpersona = _context.Persona.Where(x => x.Nombrepersona == newUser.FullName && x.Cedulapersona == newUser.CI).Select(x => x.Idpersona).FirstOrDefault(),
-                             Idempleado = Guid.NewGuid()
-                         });
+                            new Empleado
+                            {
+                                Username = newUser.UserName,
+                                Password = newUser.Password,
+                                Idrestaurante = _context.Restaurante.Where(x => x.Nombrerestaurante == "Uchu Manka").Select(x => x.Idrestaurante).FirstOrDefault(),
+                                Idpersona = _context.Persona.Where(x => x.Nombrepersona == newUser.FullName && x.Cedulapersona == newUser.CI).Select(x => x.Idpersona).FirstOrDefault(),
+                                Idempleado = Guid.NewGuid()
+                            });
                 _context.SaveChanges();
             }
         #endregion
 
         //function for validating an Ecuadors citizen ID
         #region validateCI
-            public bool validateCI(string CI)
+            private bool validateCI(string CI)
             {
                 int isNumeric;
                 var total = 0;
@@ -179,7 +190,7 @@ namespace EasyOrderWeb.Controllers
 
         //function for validating a name, it can't contain any number at all
         #region validatefullName
-            public bool validatefullName(string FullName)
+            private bool validatefullName(string FullName)
             {
                 string[] names = FullName.Split(" ");
                 int result;
@@ -190,6 +201,18 @@ namespace EasyOrderWeb.Controllers
                 
                 }
                 return false;
+            }
+        #endregion
+
+        //function for validating a phone number
+        #region phoneNumberVal
+            private bool phoneNumberVal(string number)
+            {
+                int digit0, digit9;
+                if (number.Length != maxPhoneNumber ) return true;
+                if (Int32.TryParse(number[0] + string.Empty, out digit0) && Int32.TryParse(number[1] + string.Empty, out digit9) &&
+                    digit0 == 0 && digit9 == 9) return false;
+                return true;
             }
         #endregion
     }

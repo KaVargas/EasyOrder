@@ -30,6 +30,7 @@ $(document).ready(function () {
             $('#pa1').css("display", "block");
             $('#num1')[0].innerText = $('#Number1')[0].value;
         }
+
         if ($('#Number2')[0].value > 0) {
             $('#pa2').css("display", "block");
             $('#num2')[0].innerText = $('#Number2')[0].value;
@@ -62,5 +63,19 @@ $(document).ready(function () {
             $('#pa9').css("display", "block");
             $('#num9')[0].innerText = $('#Number9')[0].value;
         }
+    });
+});
+
+$(document).ready(function () {
+    $("#closeModal2").click(function () {
+        document.getElementById("pa1").style.display = "none";
+        $('#pa2').css("display", "none");
+        $('#pa3').css("display", "none");
+        $('#pa4').css("display", "none");
+        $('#pa5').css("display", "none");
+        $('#pa6').css("display", "none");
+        $('#pa7').css("display", "none");
+        $('#pa8').css("display", "none");
+        $('#pa9').css("display", "none");
     });
 });

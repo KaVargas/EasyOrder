@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>Página principal</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @*todo lo necesario para bootstrap -> inicio*@
@@ -32,8 +32,8 @@
 
     <!--primera fila del menu de platos-->
     <div class="btn-group btn-group-justified">
-        <a href="#" class="btn btn-primary" onclick="Mostrar_Comidas()">Comidas</a>
-        <a href="#" class="btn btn-primary" onclick="Mostrar_Bebidas()">Bebidas</a>
+        <a class="btn btn-primary" onclick="Mostrar_Comidas()">Comidas</a>
+        <a class="btn btn-primary" onclick="Mostrar_Bebidas()">Bebidas</a>
     </div>
 
     <!--saltos de linea aqui van los botones de Estado, Modificar y del visto-->
@@ -68,7 +68,7 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button id="closeModal1" type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Orden</h4>
                 </div>
                 <div class="modal-body">
@@ -83,7 +83,8 @@
                     <p id="pa9" style="display:none">Agua: <span id="num9">0</span></p>
                 </div>
                 <div class="modal-footer">
-
+                    <button id="closeModal2" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-default" id="enviarBtn">Enviar</button>
                 </div>
             </div>
         </div>
@@ -454,7 +455,7 @@
     </section>
 
     <!--empiezo con la seccion de bebidas-->
-    <section id="bebidas">
+    <section id="bebidas" style="display:none">
         <section class="main row">
             <article class="col-xs-4">
                 <p>
@@ -483,7 +484,7 @@
             <aside class="col-xs-4">
                 <p>
                     AGUAS
-                    <span><input type="number" tabindex="9" id="Number49" class="form-control input-sm" min="0"></span>
+                    <span><input type="number" tabindex="9" id="Number9" class="form-control input-sm" min="0"></span>
                 </p>
                 <button class="btn btn-xs">
                     <img src="~/images/aguas.png" class="img-responsive img-rounded" data-toggle="modal" data-target="#aguasModal" alt="" height="500px" width="500px">

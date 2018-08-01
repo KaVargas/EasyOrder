@@ -96,6 +96,7 @@ namespace EasyOrderWeb.Controllers
             {
                 string[] quantityperplate = orders[i].Split(':');
                 int.TryParse(quantityperplate[1], out k);
+                if (k == 0) break;
                 _context.Detalledeorden.Add(
                     new Detalledeorden
                     {

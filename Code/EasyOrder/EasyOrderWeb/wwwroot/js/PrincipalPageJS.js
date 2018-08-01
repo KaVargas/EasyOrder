@@ -66,16 +66,61 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function () {
-    $("#closeModal2").click(function () {
-        document.getElementById("pa1").style.display = "none";
-        $('#pa2').css("display", "none");
-        $('#pa3').css("display", "none");
-        $('#pa4').css("display", "none");
-        $('#pa5').css("display", "none");
-        $('#pa6').css("display", "none");
-        $('#pa7').css("display", "none");
-        $('#pa8').css("display", "none");
-        $('#pa9').css("display", "none");
+function encerar() {
+    document.getElementById("pa1").style.display = "none";
+    $('#pa2').css("display", "none");
+    $('#pa3').css("display", "none");
+    $('#pa4').css("display", "none");
+    $('#pa5').css("display", "none");
+    $('#pa6').css("display", "none");
+    $('#pa7').css("display", "none");
+    $('#pa8').css("display", "none");
+    $('#pa9').css("display", "none");
+}
+
+//$(document).ready(function () {
+//    $("#closeModal2").click(function () {
+//        document.getElementById("pa1").style.display = "none";
+//        $('#pa2').css("display", "none");
+//        $('#pa3').css("display", "none");
+//        $('#pa4').css("display", "none");
+//        $('#pa5').css("display", "none");
+//        $('#pa6').css("display", "none");
+//        $('#pa7').css("display", "none");
+//        $('#pa8').css("display", "none");
+//        $('#pa9').css("display", "none");
+//    });
+//});
+
+function sendPedido() {
+    $.ajax({
+        url: "/api/user/register",
+        method: "POST",
+        data: JSON.stringify({
+            porcionYuca: $('#Number1')[0].value,
+            carneAhumada: $('#Number2')[0].value,
+            caldoCarachama: $('#Number3')[0].value,
+            tilapiaFrita: $('#Number4')[0].value,
+            maitoTilapia: $('#Number5')[0].value,
+            maitoPollo: $('#Number6')[0].value,
+            gaseosa: $('#Number7')[0].value,
+            guayusa: $('#Number8')[0].value,
+            agua: $('#Number9')[0].value
+        }),
+        dataType: 'json',
+        contentType: "application/json",
+        async: false,
+        success: function (result, status, jqXHR) {
+            if (result.allowed) {
+                targetUrl.value = "/PrincipalPage";
+            }
+            else {
+                targetUrl.value = "/Error";
+
+            }
+        },
+        error(jqXHR, textStatus, errorThrown) {
+            targetUrl.value = "/Error";
+        }
     });
-});
+}

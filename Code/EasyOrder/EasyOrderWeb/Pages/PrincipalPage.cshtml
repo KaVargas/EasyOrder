@@ -55,7 +55,7 @@
 
         <article class="col-xs-3">
             <button id="siguienteBtn" class="btn btn-xs">
-                <img src="~/images/siguiente.png" class="img-responsive img-circle" data-toggle="modal" data-target="#resumenOrden" alt="" height="100px" width="100px">
+                <img src="~/images/siguiente.png" class="img-responsive img-circle" data-toggle="modal" onclick="encerar()" data-target="#resumenOrden" alt="" height="100px" width="100px">
             </button>
         </article>
     </section>
@@ -68,7 +68,7 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <button id="closeModal1" type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button id="closeModal" type="button" class="close" data-dismiss="modal" >&times;</button>
                     <h4 class="modal-title">Orden</h4>
                 </div>
                 <div class="modal-body">
@@ -83,8 +83,8 @@
                     <p id="pa9" style="display:none">Agua: <span id="num9">0</span></p>
                 </div>
                 <div class="modal-footer">
-                    <button id="closeModal2" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-default" id="enviarBtn">Enviar</button>
+                    <button id="closeModal2" type="button" class="btn btn-default" data-dismiss="modal" >Cancelar</button>
+                    <button class="btn btn-default" id="enviarBtn" onclick="sendPedido()">Enviar</button>
                 </div>
             </div>
         </div>
@@ -95,7 +95,7 @@
             <article class="col-xs-4">
                 <p>
                     PORCION DE YUCA
-                    <span><input type="number" tabindex="1" id="Number1" class="form-control input-sm" min="0"></span>
+                    <span><input type="number" tabindex="1" id="Number1" class="form-control input-sm" value="0" min="0"></span>
                 </p>
 
                 <button class="btn btn-xs">
@@ -108,7 +108,7 @@
 
                 <p>
                     CARNE AHUMADA
-                    <span><input type="number" tabindex="2" id="Number2" class="form-control input-sm" min="0"></span>
+                    <span><input type="number" tabindex="2" id="Number2" class="form-control input-sm" value="0" min="0"></span>
                 </p>
                 <button class="btn btn-xs">
                     <img src="~/images/carne ahumada.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#carneModal" alt="" height="500px" width="500px">
@@ -119,7 +119,7 @@
             <aside class="col-xs-4">
                 <p>
                     CALDO DE CARACHAMA
-                    <span><input type="number" tabindex="3" id="Number3" class="form-control input-sm" min="0"></span>
+                    <span><input type="number" tabindex="3" id="Number3" class="form-control input-sm" value="0" min="0"></span>
                 </p>
                 <button class="btn btn-xs">
                     <img src="~/images/carachama.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#carachamaModal" alt="" height="500px" width="500px">
@@ -133,7 +133,7 @@
             <div class="col-xs-4">
                 <p>
                     TILAPIA FRITA
-                    <span><input type="number" tabindex="4" id="Number4" class="form-control input-sm" min="0"></span>
+                    <span><input type="number" tabindex="4" id="Number4" class="form-control input-sm" value="0" min="0"></span>
                 </p>
                 <button class="btn btn-xs">
                     <img src="~/images/tilapia.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#tilapiafritaModal" alt="" height="500px" width="500px">
@@ -144,7 +144,7 @@
             <div class="col-xs-4">
                 <p>
                     MAITO DE TILAPIA
-                    <span><input type="number" tabindex="5" id="Number5" class="form-control input-sm" min="0"></span>
+                    <span><input type="number" tabindex="5" id="Number5" class="form-control input-sm" value="0" min="0"></span>
                 </p>
                 <button class="btn btn-xs">
                     <img src="~/images/maito de tilapia.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#maitotilapiaModal" alt="" height="500px" width="500px">
@@ -155,7 +155,7 @@
             <div class="col-xs-4">
                 <p>
                     MAITO DE POLLO
-                    <span><input type="number" tabindex="6" id="Number6" class="form-control input-sm" min="0"></span>
+                    <span><input type="number" tabindex="6" id="Number6" class="form-control input-sm" value="0" min="0"></span>
                 </p>
                 <button class="btn btn-xs">
                     <img src="~/images/maito de pollo.jpg" class="img-responsive img-rounded" data-toggle="modal" data-target="#maitopolloModal" alt="" height="500px" width="500px">
@@ -460,7 +460,7 @@
             <article class="col-xs-4">
                 <p>
                     COLAS
-                    <span><input type="number" tabindex="7" id="Number7" class="form-control input-sm" min="0"></span>
+                    <span><input type="number" tabindex="7" id="Number7" class="form-control input-sm" value="0" min="0"></span>
                 </p>
 
                 <button class="btn btn-xs">
@@ -473,7 +473,7 @@
 
                 <p>
                     GUAYUSAS
-                    <span><input type="number" tabindex="8" id="Number8" class="form-control input-sm" min="0"></span>
+                    <span><input type="number" tabindex="8" id="Number8" class="form-control input-sm" value="0" min="0"></span>
                 </p>
                 <button class="btn btn-xs">
                     <img src="~/images/guayusa.png" class="img-responsive img-rounded" data-toggle="modal" data-target="#guayusaModal" alt="" height="500px" width="500px">
@@ -484,7 +484,7 @@
             <aside class="col-xs-4">
                 <p>
                     AGUAS
-                    <span><input type="number" tabindex="9" id="Number9" class="form-control input-sm" min="0"></span>
+                    <span><input type="number" tabindex="9" id="Number9" class="form-control input-sm" value="0" min="0"></span>
                 </p>
                 <button class="btn btn-xs">
                     <img src="~/images/aguas.png" class="img-responsive img-rounded" data-toggle="modal" data-target="#aguasModal" alt="" height="500px" width="500px">

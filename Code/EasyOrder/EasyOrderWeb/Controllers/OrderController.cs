@@ -33,7 +33,7 @@ namespace EasyOrderWeb.Controllers
             try
             {
                 AddOrder(orderInfo);
-                _hubContext.Clients.All.SendAsync("ReceiveMessage", "EasyOrder", $"New order placed at {DateTime.Now}");
+                _hubContext.Clients.All.SendAsync("ReceiveMessage", "EasyOrder", orderInfo.platoCantidad);
                 return new Response
                 {
                     Allowed = true,

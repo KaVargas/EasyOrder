@@ -23,12 +23,9 @@ namespace DatabaseLayer.Models
         {
             modelBuilder.Entity<Detalledeorden>(entity =>
             {
-                entity.HasKey(e => new { e.Idorden, e.Idproducto, e.Iddetalle });
+                entity.HasKey(e => new { e.Idorden, e.Idproducto, e.Nombreproducto, e.Iddetalle });
 
                 entity.ToTable("DETALLEDEORDEN");
-
-                entity.HasIndex(e => e.Idorden)
-                    .HasName("DETALLEDEORDEN_FK");
 
                 entity.HasIndex(e => e.Idproducto)
                     .HasName("DETALLEDEORDEN2_FK");
@@ -37,7 +34,18 @@ namespace DatabaseLayer.Models
 
                 entity.Property(e => e.Idproducto).HasColumnName("IDPRODUCTO");
 
+                entity.Property(e => e.Nombreproducto)
+                    .HasColumnName("NOMBREPRODUCTO")
+                    .HasMaxLength(32)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Iddetalle).HasColumnName("IDDETALLE");
+
+                entity.Property(e => e.Cantproducto).HasColumnName("CANTPRODUCTO");
+
+                entity.Property(e => e.Precioparcial)
+                    .HasColumnName("PRECIOPARCIAL")
+                    .HasColumnType("decimal(4, 2)");
 
                 entity.HasOne(d => d.IdordenNavigation)
                     .WithMany(p => p.Detalledeorden)
@@ -58,33 +66,25 @@ namespace DatabaseLayer.Models
 
                 entity.ToTable("EMPLEADO");
 
-                entity.HasIndex(e => e.Idpersona)
-                    .HasName("HERENCIA_FK");
-
-                entity.HasIndex(e => e.Idrestaurante)
-                    .HasName("CONTRATO_FK");
-
                 entity.Property(e => e.Idpersona).HasColumnName("IDPERSONA");
 
                 entity.Property(e => e.Idempleado).HasColumnName("IDEMPLEADO");
 
-                entity.Property(e => e.Idrestaurante).HasColumnName("IDRESTAURANTE");
+                entity.Property(e => e.Password)
+                    .HasColumnName("PASSWORD")
+                    .HasMaxLength(32)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Password).HasColumnName("PASSWORD");
-
-                entity.Property(e => e.Username).HasColumnName("USERNAME");
+                entity.Property(e => e.Username)
+                    .HasColumnName("USERNAME")
+                    .HasMaxLength(32)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.IdpersonaNavigation)
                     .WithMany(p => p.Empleado)
                     .HasForeignKey(d => d.Idpersona)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_EMPLEADO_HERENCIA_PERSONA");
-
-                entity.HasOne(d => d.IdrestauranteNavigation)
-                    .WithMany(p => p.Empleado)
-                    .HasForeignKey(d => d.Idrestaurante)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_EMPLEADO_CONTRATO_RESTAURA");
             });
 
             modelBuilder.Entity<Orden>(entity =>
@@ -106,6 +106,8 @@ namespace DatabaseLayer.Models
 
                 entity.Property(e => e.Numeromesa).HasColumnName("NUMEROMESA");
 
+                entity.Property(e => e.Preciototal).HasColumnName("PRECIOTOTAL");
+
                 entity.HasOne(d => d.Id)
                     .WithMany(p => p.Orden)
                     .HasForeignKey(d => new { d.Idpersona, d.Idempleado })
@@ -123,11 +125,20 @@ namespace DatabaseLayer.Models
                     .HasColumnName("IDPERSONA")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Cedulapersona).HasColumnName("CEDULAPERSONA");
+                entity.Property(e => e.Cedulapersona)
+                    .HasColumnName("CEDULAPERSONA")
+                    .HasMaxLength(32)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Nombrepersona).HasColumnName("NOMBREPERSONA");
+                entity.Property(e => e.Nombrepersona)
+                    .HasColumnName("NOMBREPERSONA")
+                    .HasMaxLength(32)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Telefonopersona).HasColumnName("TELEFONOPERSONA");
+                entity.Property(e => e.Telefonopersona)
+                    .HasColumnName("TELEFONOPERSONA")
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Producto>(entity =>
@@ -140,11 +151,18 @@ namespace DatabaseLayer.Models
                     .HasColumnName("IDPRODUCTO")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Descripcionproducto).HasColumnName("DESCRIPCIONPRODUCTO");
+                entity.Property(e => e.Descripcionproducto)
+                    .HasColumnName("DESCRIPCIONPRODUCTO")
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Disponibilidadproducto).HasColumnName("DISPONIBILIDADPRODUCTO");
 
-                entity.Property(e => e.Nombreproducto).HasColumnName("NOMBREPRODUCTO");
+                entity.Property(e => e.Nombreproducto)
+                    .IsRequired()
+                    .HasColumnName("NOMBREPRODUCTO")
+                    .HasMaxLength(32)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Precioproducto).HasColumnName("PRECIOPRODUCTO");
             });

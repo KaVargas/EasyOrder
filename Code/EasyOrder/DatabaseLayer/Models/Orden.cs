@@ -14,6 +14,7 @@ namespace DatabaseLayer.Models
         public Guid Idpersona { get; set; }
         public Guid Idempleado { get; set; }
         public int? Numeromesa { get; set; }
+        public double? Preciototal { get; set; }
 
         public Empleado Id { get; set; }
         public ICollection<Detalledeorden> Detalledeorden { get; set; }

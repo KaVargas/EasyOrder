@@ -14,7 +14,8 @@ namespace EasyOrderWeb.Controllers
     public class OrderController : Controller
     {
         private readonly EasyorderContext _context;
-
+        private static Guid[] Orderbuffer = new Guid[4];
+        private static int OrderCount = 0;
         public OrderController(EasyorderContext context) { _context = context; }
 
         #region new order
@@ -22,11 +23,23 @@ namespace EasyOrderWeb.Controllers
         [Route("newOrder")]
         public Response NewOrder(OrderInfo orderInfo, Credential credential)
         {
-            return new Response
+            try
             {
-                Allowed = true,
-                Message = "Successful"
-            };
+                AddOrder(orderInfo, credential);
+                return new Response
+                {
+                    Allowed = true,
+                    Message = "Successful"
+                };
+            }
+            catch {
+                return new Response
+                {
+                    Allowed = false,
+                    Message = "Error"
+                };
+            }
+            
         }
         #endregion
 
@@ -34,20 +47,32 @@ namespace EasyOrderWeb.Controllers
         private void AddOrder(OrderInfo orderInfo, Credential credential)
         {
             Guid id = Guid.NewGuid();
+            int tablenumber;
+            int.TryParse(orderInfo.numMesa, out tablenumber);
+            OrderBuff(id);
             _context.Orden.Add(
                 new Orden
                 {
-                    Numeromesa = orderInfo.numMesa,
+                    Numeromesa = tablenumber, 
                     Idempleado = _context.Empleado.Where(x => x.Username == credential.UserName).Select(x => x.Idempleado).FirstOrDefault(),
                     Idpersona = _context.Empleado.Where(x => x.Username == credential.UserName).Select(x => x.Idpersona).FirstOrDefault(),
-                    Idorden = id
-                    // = getTotalPrice(orderInfo)
+                    Idorden = id,
+                    Preciototal = GetTotalPrice(orderInfo)
                 });
             _context.SaveChanges();
             OrderDetails(orderInfo, id);
         }
         #endregion
 
+        #region establish order buffer
+        private void OrderBuff(Guid guid)
+        {
+            if (OrderCount == 3) OrderCount = 0;
+            Orderbuffer[OrderCount] = guid;
+            OrderCount++;
+        }
+
+        #endregion
         #region calculate total Price
         private double GetTotalPrice(OrderInfo orderInfo)
         {
@@ -65,21 +90,59 @@ namespace EasyOrderWeb.Controllers
         #region order detailing
         private bool OrderDetails(OrderInfo orderInfo, Guid orderID)
         {
+            int k;
             string[] orders = orderInfo.platoCantidad.Split(',');
             for (int i = 0; i < orders.Length; i++)
             {
                 string[] quantityperplate = orders[i].Split(':');
+                int.TryParse(quantityperplate[1], out k);
                 _context.Detalledeorden.Add(
                     new Detalledeorden
                     {
                         Iddetalle = Guid.NewGuid(),
                         Idorden = orderID,
-                        Idproducto = _context.Producto.Where(x => x.Nombreproducto == quantityperplate[0]).Select(x => x.Idproducto).FirstOrDefault()
+                        Idproducto = _context.Producto.Where(x => x.Nombreproducto == quantityperplate[0]).Select(x => x.Idproducto).FirstOrDefault(),
+                        Cantproducto = k,
+                        Nombreproducto = quantityperplate[0],
+                        Precioparcial = (decimal)_context.Producto.Where(x => x.Nombreproducto == quantityperplate[0]).Select(x => x.Precioproducto).FirstOrDefault(),
+                        
                     }
                 );
+                _context.SaveChanges();
             }
-            _context.SaveChanges();
+            
             return true;
+        }
+        #endregion
+
+        #region
+        [HttpPost]
+        [Route("Last Orders")]
+        public OrderInfo[] GetLast4Orders()
+        {
+            Guid test = new Guid();
+            string platoCantidad = "";
+            OrderInfo[] orders = new OrderInfo[4];
+            for(int i = 0; i < 4; i++)
+            {
+                if (Orderbuffer[i] == test) break;
+                var mesa = _context.Orden.Where(x => x.Idorden == Orderbuffer[i]).Select(x => x.Numeromesa);
+                //retrive all the order detail associated with the ID saved on the buffer
+                IEnumerable<Detalledeorden> detalle = _context.Orden.Where(x=>x.Idorden==Orderbuffer[i]).SelectMany(x => x.Detalledeorden);
+                //for each detail, retrieve the product name and quantity so a string is constructed to send back to the page
+                int k = 0;
+                foreach (var item in detalle)
+                {
+                    if(k!=0) platoCantidad += ",";
+                    var productName = item.Nombreproducto;
+                    var quantity = item.Cantproducto;
+                    string tmp = productName + ":" + quantity;
+                    platoCantidad += tmp;
+                    k++;
+                }
+                orders[i] = new OrderInfo { numMesa = mesa+string.Empty, platoCantidad = platoCantidad}; 
+            }
+            return orders;
         }
         #endregion
     }

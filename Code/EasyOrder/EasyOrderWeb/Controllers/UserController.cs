@@ -29,7 +29,7 @@ namespace EasyOrderWeb.Controllers
         #region login
             [HttpPost]
             [Route("Login")]
-            public Response login([FromBody]Credential credential)
+            public Response Login([FromBody]Credential credential)
             {
                 try
                 {
@@ -147,7 +147,7 @@ namespace EasyOrderWeb.Controllers
                             {
                                 Username = newUser.UserName,
                                 Password = newUser.Password,
-                                Idrestaurante = _context.Restaurante.Where(x => x.Nombrerestaurante == "Uchu Manka").Select(x => x.Idrestaurante).FirstOrDefault(),
+                                //Idrestaurante = _context.Restaurante.Where(x => x.Nombrerestaurante == "Uchu Manka").Select(x => x.Idrestaurante).FirstOrDefault(),
                                 Idpersona = _context.Persona.Where(x => x.Nombrepersona == newUser.FullName && x.Cedulapersona == newUser.CI).Select(x => x.Idpersona).FirstOrDefault(),
                                 Idempleado = Guid.NewGuid()
                             });

@@ -9,8 +9,8 @@ namespace EasyOrderWeb.Model
     {
         public string productName { get; set; }
         public string productDescription { get; set; }
-        public float productPrice { get; set; }
-        public int productAvailability { get; set; } 
+        public string productPrice { get; set; }
+        public string productAvailability { get; set; } 
         /*
          json
          {

@@ -21,24 +21,39 @@ namespace EasyOrderWeb.Controllers
         
         // POST: api/Product
         [HttpPost]
-        [Route("newproduct")]
+        [Route("add")]
         public Response NewProduct([FromBody]ProductInfo newProductinfo)
         {
-            _context.Producto.Add(
-                new Producto
-                {
-                    Descripcionproducto = newProductinfo.productDescription,
-                    Nombreproducto = newProductinfo.productName,
-                    Precioproducto = newProductinfo.productPrice,
-                    Idproducto = Guid.NewGuid(),
-                    Disponibilidadproducto = newProductinfo.productAvailability
-                });
-            _context.SaveChanges();
+            if(AddProduct(newProductinfo))
             return new Response
             {
                 Allowed = true,
                 Message = "product added succesfully"
             };
+            else return new Response
+            {
+                Allowed = false,
+                Message = "error"
+            };
+        }
+
+        private bool AddProduct(ProductInfo productInfo)
+        {
+            try
+            {
+                _context.Producto.Add(
+                    new Producto
+                    {
+                        Descripcionproducto = productInfo.productDescription,
+                        Nombreproducto = productInfo.productName,
+                        Precioproducto = float.Parse(productInfo.productPrice),
+                        Idproducto = Guid.NewGuid(),
+                        Disponibilidadproducto = int.Parse(productInfo.productAvailability)
+                    });
+                _context.SaveChanges();
+            }
+            catch { return false; }
+            return true;
         }
         
         

@@ -7,10 +7,10 @@ namespace EasyOrderWeb.Model
 {
     public class OrderInfo
     {
-        public int numMesa { get; set; }
+        public string numMesa { get; set; }
         public string platoCantidad { get; set; }
         ///{
-        /// "numMesa":1
+        /// "numMesa":"1"
         /// "platoCantidad":"tilapia:2,maito:3,tamales:0"
         ///}
     }

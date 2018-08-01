@@ -122,12 +122,13 @@ namespace EasyOrderWeb.Controllers
         public OrderInfo[] GetLast4Orders()
         {
             Guid test = new Guid();
-            string platoCantidad = "";
+            string platoCantidad;
             OrderInfo[] orders = new OrderInfo[4];
             for(int i = 0; i < 4; i++)
             {
+                platoCantidad = "";
                 if (Orderbuffer[i] == test) break;
-                var mesa = _context.Orden.Where(x => x.Idorden == Orderbuffer[i]).Select(x => x.Numeromesa);
+                string mesa = _context.Orden.Where(x => x.Idorden == Orderbuffer[i]).Select(x => x.Numeromesa)+string.Empty;
                 //retrive all the order detail associated with the ID saved on the buffer
                 IEnumerable<Detalledeorden> detalle = _context.Orden.Where(x=>x.Idorden==Orderbuffer[i]).SelectMany(x => x.Detalledeorden);
                 //for each detail, retrieve the product name and quantity so a string is constructed to send back to the page

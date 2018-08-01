@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace EasyOrderWeb.Model
 {
-    public class OrderInfo
+    public class OrderInfo 
     {
         public string numMesa { get; set; }
         public string platoCantidad { get; set; }
+        public String UserName { get; set; }
         ///{
         /// "numMesa":"1"
         /// "platoCantidad":"tilapia:2,maito:3,tamales:0"

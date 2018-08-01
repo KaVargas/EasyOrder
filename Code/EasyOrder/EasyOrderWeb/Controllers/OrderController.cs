@@ -20,12 +20,12 @@ namespace EasyOrderWeb.Controllers
 
         #region new order
         [HttpPost]
-        [Route("newOrder")]
-        public Response NewOrder(OrderInfo orderInfo, Credential credential)
+        [Route("add")]
+        public Response NewOrder([FromBody]OrderInfo orderInfo)
         {
             try
             {
-                AddOrder(orderInfo, credential);
+                AddOrder(orderInfo);
                 return new Response
                 {
                     Allowed = true,
@@ -44,7 +44,7 @@ namespace EasyOrderWeb.Controllers
         #endregion
 
         #region add Order to DB
-        private void AddOrder(OrderInfo orderInfo, Credential credential)
+        private void AddOrder(OrderInfo orderInfo)
         {
             Guid id = Guid.NewGuid();
             int tablenumber;
@@ -54,8 +54,8 @@ namespace EasyOrderWeb.Controllers
                 new Orden
                 {
                     Numeromesa = tablenumber, 
-                    Idempleado = _context.Empleado.Where(x => x.Username == credential.UserName).Select(x => x.Idempleado).FirstOrDefault(),
-                    Idpersona = _context.Empleado.Where(x => x.Username == credential.UserName).Select(x => x.Idpersona).FirstOrDefault(),
+                    Idempleado = _context.Empleado.Where(x => x.Username == orderInfo.UserName).Select(x => x.Idempleado).FirstOrDefault(),
+                    Idpersona = _context.Empleado.Where(x => x.Username == orderInfo.UserName).Select(x => x.Idpersona).FirstOrDefault(),
                     Idorden = id,
                     Preciototal = GetTotalPrice(orderInfo)
                 });

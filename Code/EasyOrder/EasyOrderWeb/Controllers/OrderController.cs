@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DatabaseLayer.Models;
 using EasyOrderWeb.Model;
+using EasyOrderWeb.Signalr;
+using Microsoft.AspNetCore.SignalR;
 
 namespace EasyOrderWeb.Controllers
 {
@@ -14,9 +16,14 @@ namespace EasyOrderWeb.Controllers
     public class OrderController : Controller
     {
         private readonly EasyorderContext _context;
+        private readonly IHubContext<ChatHub> _hubContext;
         private static Guid[] Orderbuffer = new Guid[4];
         private static int OrderCount = 0;
-        public OrderController(EasyorderContext context) { _context = context; }
+        public OrderController(EasyorderContext context, IHubContext<ChatHub> hubContext)
+        {
+            _context = context;
+            _hubContext = hubContext;
+        }
 
         #region new order
         [HttpPost]
@@ -26,6 +33,7 @@ namespace EasyOrderWeb.Controllers
             try
             {
                 AddOrder(orderInfo);
+                _hubContext.Clients.All.SendAsync("ReceiveMessage", "EasyOrder", orderInfo.platoCantidad);
                 return new Response
                 {
                     Allowed = true,

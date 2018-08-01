@@ -52,8 +52,9 @@ namespace EasyOrderWeb.Controllers
                         Message = "User or Password is wrong."
                     };
                 }
-                catch
+                catch(Exception e)
                 {
+                Console.WriteLine(e.ToString());
                     return new Response
                     {
                         Allowed = false,

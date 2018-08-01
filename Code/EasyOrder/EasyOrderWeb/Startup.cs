@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DatabaseLayer.Models;
+using EasyOrderWeb.Signalr;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,8 @@ namespace EasyOrderWeb
             services.AddMvc();
             var connection = @"Server=tcp:easyorderwebdb.database.windows.net,1433;Initial Catalog=easyorder;Persist Security Info=False;User ID=Administrador;Password=Sinclave-5;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             services.AddDbContext<EasyorderContext>(options => options.UseSqlServer(connection));
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +52,10 @@ namespace EasyOrderWeb
                     template: "{controller=Home}/{action=Index}/{id?}");
                
             });
-            
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/chatHub");
+            });
         }
     }
 }

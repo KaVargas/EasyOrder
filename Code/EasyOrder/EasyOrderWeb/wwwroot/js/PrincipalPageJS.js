@@ -94,18 +94,25 @@ function encerar() {
 
 function sendPedido() {
     $.ajax({
-        url: "/api/user/register",
+        url: "/api/order/neworder",
         method: "POST",
         data: JSON.stringify({
-            porcionYuca: $('#Number1')[0].value,
-            carneAhumada: $('#Number2')[0].value,
-            caldoCarachama: $('#Number3')[0].value,
-            tilapiaFrita: $('#Number4')[0].value,
-            maitoTilapia: $('#Number5')[0].value,
-            maitoPollo: $('#Number6')[0].value,
-            gaseosa: $('#Number7')[0].value,
-            guayusa: $('#Number8')[0].value,
-            agua: $('#Number9')[0].value
+            numMesa: "1",
+            platoCantidad: "porcionYuca:" + $('#Number1')[0].value + ",carneAhumada:" + $('#Number2')[0].value +
+                ",caldoCarachama:" + $('#Number3')[0].value + ",tilapiaFrita:" + $('#Number4')[0].value +
+                ",maitoTilapia:" + $('#Number5')[0].value + ",maitoPollo:" + $('#Number6')[0].value +
+                ",gaseosa:" + $('#Number7')[0].value + ",guayusa:" + $('#Number8')[0].value +
+                ",agua:" + $('#Number9')[0].value + "",
+            UserName:"ismalfprueba"
+            //(porcionYuca: $('#Number1')[0].value,
+            //carneAhumada: $('#Number2')[0].value,
+            //caldoCarachama: $('#Number3')[0].value,
+            //tilapiaFrita: $('#Number4')[0].value,
+            //maitoTilapia: $('#Number5')[0].value,
+            //maitoPollo: $('#Number6')[0].value,
+            //gaseosa: $('#Number7')[0].value,
+            //guayusa: $('#Number8')[0].value,
+            //agua: $('#Number9')[0].value)
         }),
         dataType: 'json',
         contentType: "application/json",

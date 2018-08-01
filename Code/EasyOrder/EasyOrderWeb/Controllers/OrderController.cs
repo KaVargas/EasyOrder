@@ -67,7 +67,7 @@ namespace EasyOrderWeb.Controllers
         #region establish order buffer
         private void OrderBuff(Guid guid)
         {
-            if (OrderCount == 3) OrderCount = 0;
+            if (OrderCount == 4) OrderCount = 0;
             Orderbuffer[OrderCount] = guid;
             OrderCount++;
         }
@@ -116,7 +116,7 @@ namespace EasyOrderWeb.Controllers
         }
         #endregion
 
-        #region
+        #region get the last 4 orders
         [HttpPost]
         [Route("Last Orders")]
         public OrderInfo[] GetLast4Orders()
@@ -128,7 +128,7 @@ namespace EasyOrderWeb.Controllers
             {
                 platoCantidad = "";
                 if (Orderbuffer[i] == test) break;
-                string mesa = _context.Orden.Where(x => x.Idorden == Orderbuffer[i]).Select(x => x.Numeromesa)+string.Empty;
+                var mesa = _context.Orden.Where(x => x.Idorden == Orderbuffer[i]).Select(x => x.Numeromesa); 
                 //retrive all the order detail associated with the ID saved on the buffer
                 IEnumerable<Detalledeorden> detalle = _context.Orden.Where(x=>x.Idorden==Orderbuffer[i]).SelectMany(x => x.Detalledeorden);
                 //for each detail, retrieve the product name and quantity so a string is constructed to send back to the page
@@ -142,7 +142,7 @@ namespace EasyOrderWeb.Controllers
                     platoCantidad += tmp;
                     k++;
                 }
-                orders[i] = new OrderInfo { numMesa = mesa+string.Empty, platoCantidad = platoCantidad}; 
+                orders[i] = new OrderInfo { numMesa = mesa.ToString(), platoCantidad = platoCantidad}; 
             }
             return orders;
         }

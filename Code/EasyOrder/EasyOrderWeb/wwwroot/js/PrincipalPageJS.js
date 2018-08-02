@@ -110,15 +110,15 @@ function sendPedido() {
         async: false,
         success: function (result, status, jqXHR) {
             if (result.allowed) {
-                targetUrl.value = "/PrincipalPage";
+                location.href = "https://easyorderweb.azurewebsites.net/PrincipalPage";
             }
             else {
-                targetUrl.value = "/Error";
+                location.href = "https://easyorderweb.azurewebsites.net/Error";
 
             }
         },
         error(jqXHR, textStatus, errorThrown) {
-            targetUrl.value = "/Error";
+            location.href = "https://easyorderweb.azurewebsites.net/Error";
         }
     });
 }

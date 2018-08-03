@@ -28,12 +28,12 @@ namespace EasyOrderWeb.Controllers
         #region new order
         [HttpPost]
         [Route("add")]
-        public Response NewOrder([FromBody]OrderInfo orderInfo)
+        public Response NewOrder([FromBody]Order order)
         {
             try
             {
-                AddOrder(orderInfo);
-                _hubContext.Clients.All.SendAsync("ReceiveMessage", "EasyOrder", orderInfo.platoCantidad);
+                //AddOrder(orderInfo); //TODO: Fix this.
+                _hubContext.Clients.All.SendAsync("ReceiveMessage", Newtonsoft.Json.JsonConvert.SerializeObject(order));
                 return new Response
                 {
                     Allowed = true,

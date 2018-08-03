@@ -29,12 +29,12 @@ namespace EasyOrderWeb.Controllers
         #region new order
         [HttpPost]
         [Route("add")]
-        public Response NewOrder([FromBody]OrderInfo orderInfo)
+        public Response NewOrder([FromBody]Order order)
         {
             try
             {
-                //Testin SignalR functionality
-                _hubContext.Clients.All.SendAsync("ReceiveMessage", "EasyOrder", new OrderTransfers(orderInfo, AddOrder(orderInfo)));
+                //AddOrder(orderInfo); //TODO: Fix this.
+                _hubContext.Clients.All.SendAsync("ReceiveMessage", Newtonsoft.Json.JsonConvert.SerializeObject(order));
                 return new Response
                 {
                     Allowed = true,

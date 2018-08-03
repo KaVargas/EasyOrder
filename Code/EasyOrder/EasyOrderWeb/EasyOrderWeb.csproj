@@ -23,6 +23,9 @@
     <ProjectReference Include="..\DatabaseLayer\DatabaseLayer.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Content Update="Pages\Kitchen-2.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Kitchen.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

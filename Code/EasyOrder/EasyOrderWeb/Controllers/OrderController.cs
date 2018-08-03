@@ -19,6 +19,7 @@ namespace EasyOrderWeb.Controllers
         private readonly IHubContext<ChatHub> _hubContext;
         private static Guid[] Orderbuffer = new Guid[4];
         private static int OrderCount = 0;
+
         public OrderController(EasyorderContext context, IHubContext<ChatHub> hubContext)
         {
             _context = context;
@@ -32,8 +33,8 @@ namespace EasyOrderWeb.Controllers
         {
             try
             {
-                AddOrder(orderInfo);
-                _hubContext.Clients.All.SendAsync("ReceiveMessage", "EasyOrder", orderInfo.platoCantidad);
+                //Testin SignalR functionality
+                _hubContext.Clients.All.SendAsync("ReceiveMessage", "EasyOrder", new OrderTransfers(orderInfo, AddOrder(orderInfo)));
                 return new Response
                 {
                     Allowed = true,
@@ -52,7 +53,7 @@ namespace EasyOrderWeb.Controllers
         #endregion
 
         #region add Order to DB
-        private void AddOrder(OrderInfo orderInfo)
+        private Guid AddOrder(OrderInfo orderInfo)
         {
             Guid id = Guid.NewGuid();
             int tablenumber;
@@ -69,6 +70,7 @@ namespace EasyOrderWeb.Controllers
                 });
             _context.SaveChanges();
             OrderDetails(orderInfo, id);
+            return id;
         }
         #endregion
 
@@ -114,7 +116,6 @@ namespace EasyOrderWeb.Controllers
                         Cantproducto = k,
                         Nombreproducto = quantityperplate[0],
                         Precioparcial = (decimal)_context.Producto.Where(x => x.Nombreproducto == quantityperplate[0]).Select(x => x.Precioproducto).FirstOrDefault(),
-                        
                     }
                 );
                 _context.SaveChanges();

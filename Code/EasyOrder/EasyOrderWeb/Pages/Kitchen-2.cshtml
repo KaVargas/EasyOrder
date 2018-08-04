@@ -1,14 +1,5 @@
 ﻿@page
-<div class="container">    
-    <div class="row">
-        <div class="col-6">&nbsp;</div>
-        <div class="col-6">
-            <ul id="messagesList"></ul>
-        </div>
-    </div>
-</div>
-<script src="~/lib/signalr/signalr.js"></script>
-<script src="~/js/chat.js"></script>
+
 @*<script src="~/js/es5-chat.js"></script>*@
 
 <head>
@@ -24,77 +15,87 @@
     <script type="text/javascript" src="~/js/KitchenPageJS.js"></script>
     <link rel="stylesheet" href="~/css/PrincipalPageStyle.css">
 
+    <script src="~/lib/signalr/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
 </head>
 
 <body>
-   
-        <header>
-            <div class="container">
-                <section class="main row">
-                    <article class="col-xs-4"></article>
-
-                    <article class="col-xs-4">
-                        <H1>
-                            KITCHEN 2
-                        </H1>
-                    </article>
-
-                    <article class="col-xs-4"></article>
-                </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">&nbsp;</div>
+            <div class="col-6">
+                <ul id="messagesList"></ul>
             </div>
-        </header>
-
-        <!--primera fila del menu de platos-->
-        <div class="btn-group btn-group-justified">
-            <a href="#" class="btn btn-primary" onclick="Mostrar_Ocultar_Uno()">Uno</a>
-            <a href="#" class="btn btn-primary" onclick="Mostrar_Ocultar_Dos()">Dos</a>
-            <a href="#" class="btn btn-primary" onclick="Mostrar_Ocultar_Tres()">Tres</a>
-            <a href="#" class="btn btn-primary" onclick="Mostrar_Ocultar_Cuatro()">Cuatro</a>
         </div>
+    </div>
+    <header>
+        <div class="container">
+            <section class="main row">
+                <article class="col-xs-4"></article>
 
-        <section id="fila1">
+                <article class="col-xs-4">
+                    <H1>
+                        KITCHEN 2
+                    </H1>
+                </article>
 
-            <div class="container">
-                <!--primera fila de los cuadrantes-->
-                <section class="main row">
-                    <article id="uno" class="col-xs-6">
-                        <p>
-                            PRIMER CUADRANTE
-                        </p>
-                        <br>
-                    </article>
+                <article class="col-xs-4"></article>
+            </section>
+        </div>
+    </header>
 
-                    <article id="dos" class="col-xs-6">
-                        <p>
-                            SEGUNDO CUADRANTE
-                        </p>
-                        <br>
-                    </article>
-                </section>
-            </div>
-        </section>
+    <!--primera fila del menu de platos-->
+    <div class="btn-group btn-group-justified">
+        <a class="btn btn-primary" onclick="Mostrar_Ocultar_Uno()">Uno</a>
+        <a class="btn btn-primary" onclick="Mostrar_Ocultar_Dos()">Dos</a>
+        <a class="btn btn-primary" onclick="Mostrar_Ocultar_Tres()">Tres</a>
+        <a class="btn btn-primary" onclick="Mostrar_Ocultar_Cuatro()">Cuatro</a>
+    </div>
+
+    <section id="fila1">
+
+        <div class="container">
+            <!--primera fila de los cuadrantes-->
+            <section class="main row">
+                <article id="uno" class="col-xs-6">
+                    <p>
+                        PRIMER CUADRANTE
+                    </p>
+                    <p>primerplato</p>
+                    <br>
+                </article>
+
+                <article id="dos" class="col-xs-6">
+                    <p>
+                        SEGUNDO CUADRANTE
+                    </p>
+                    <br>
+                </article>
+            </section>
+        </div>
+    </section>
 
 
-        <section id="fila2">
+    <section id="fila2">
 
-            <div class="container">
-                <!--segunda fila de los cuadrantes-->
-                <section class="main row">
-                    <article id="tres" class="col-xs-6">
-                        <p>
-                            TERCER CUADRANTE
-                        </p>
-                        <br>
-                    </article>
+        <div class="container">
+            <!--segunda fila de los cuadrantes-->
+            <section class="main row">
+                <article id="tres" class="col-xs-6">
+                    <p>
+                        TERCER CUADRANTE
+                    </p>
+                    <br>
+                </article>
 
-                    <article id="cuatro" class="col-xs-6">
-                        <p>
-                            CUARTO CUADRANTE
-                        </p>
-                        <br>
-                    </article>
-                </section>
-            </div>
-        </section>
+                <article id="cuatro" class="col-xs-6">
+                    <p>
+                        CUARTO CUADRANTE
+                    </p>
+                    <br>
+                </article>
+            </section>
+        </div>
+    </section>
 
 </body>

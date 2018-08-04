@@ -17,23 +17,25 @@ namespace EasyOrderWeb.Controllers
     {
         private readonly EasyorderContext _context;
         private readonly IHubContext<ChatHub> _hubContext;
-        private static Guid[] Orderbuffer = new Guid[4];
+        private static Guid[] Orderbuffer = { new Guid(), new Guid(), new Guid(), new Guid()}; 
         private static int OrderCount = 0;
+
         public OrderController(EasyorderContext context, IHubContext<ChatHub> hubContext)
         {
             _context = context;
             _hubContext = hubContext;
+            
         }
 
         #region new order
         [HttpPost]
         [Route("add")]
-        public Response NewOrder([FromBody]OrderInfo orderInfo)
+        public Response NewOrder([FromBody]Order order)
         {
             try
             {
-                AddOrder(orderInfo);
-                _hubContext.Clients.All.SendAsync("ReceiveMessage", "EasyOrder", orderInfo.platoCantidad);
+                AddOrder(order); 
+                _hubContext.Clients.All.SendAsync("ReceiveMessage", Newtonsoft.Json.JsonConvert.SerializeObject(order));
                 return new Response
                 {
                     Allowed = true,
@@ -52,69 +54,65 @@ namespace EasyOrderWeb.Controllers
         #endregion
 
         #region add Order to DB
-        private void AddOrder(OrderInfo orderInfo)
+        private Guid AddOrder(Order orderInfo)
         {
             Guid id = Guid.NewGuid();
-            int tablenumber;
-            int.TryParse(orderInfo.numMesa, out tablenumber);
+            
             OrderBuff(id);
             _context.Orden.Add(
                 new Orden
                 {
-                    Numeromesa = tablenumber, 
-                    Idempleado = _context.Empleado.Where(x => x.Username == orderInfo.UserName).Select(x => x.Idempleado).FirstOrDefault(),
-                    Idpersona = _context.Empleado.Where(x => x.Username == orderInfo.UserName).Select(x => x.Idpersona).FirstOrDefault(),
+                    Numeromesa = orderInfo.NumeroMesa,
+                    Idempleado = _context.Empleado.Where(x => x.Username == orderInfo.NombreEmpleado).Select(x => x.Idempleado).FirstOrDefault(),
+                    Idpersona = _context.Empleado.Where(x => x.Username == orderInfo.NombreEmpleado).Select(x => x.Idpersona).FirstOrDefault(),
                     Idorden = id,
-                    Preciototal = GetTotalPrice(orderInfo)
+                    Preciototal = GetTotalPrice(orderInfo.Platos)
                 });
             _context.SaveChanges();
-            OrderDetails(orderInfo, id);
+            OrderDetails(orderInfo.Platos, id);
+            return id;
         }
         #endregion
 
         #region establish order buffer
         private void OrderBuff(Guid guid)
         {
-            if (OrderCount == 3) OrderCount = 0;
+            if (OrderCount == 4) OrderCount = 0;
             Orderbuffer[OrderCount] = guid;
             OrderCount++;
         }
 
         #endregion
+
         #region calculate total Price
-        private double GetTotalPrice(OrderInfo orderInfo)
+        private double GetTotalPrice(List<Plato> platos)
         {
             double cantTotal = 0.0;
-            string[] orders = orderInfo.platoCantidad.Split(',');
-            for(int i = 0; i < orders.Length; i++)
+            foreach (var plato in platos)
             {
-                string[] quantityperplate = orders[i].Split(':');
-                cantTotal += float.Parse(quantityperplate[1])*(float)_context.Producto.Where(x => x.Nombreproducto == quantityperplate[0]).Select(x => x.Precioproducto).FirstOrDefault();
+                if (plato.Cantidad == 0) break;
+                cantTotal += 
+                    plato.Cantidad * _context.Producto.Where(x => x.Nombreproducto == plato.Nombre).Select(x => x.Precioproducto).FirstOrDefault();
             }
             return cantTotal;
         }
         #endregion
 
         #region order detailing
-        private bool OrderDetails(OrderInfo orderInfo, Guid orderID)
+        private bool OrderDetails(List<Plato> platos, Guid orderID)
         {
-            int k;
-            string[] orders = orderInfo.platoCantidad.Split(',');
-            for (int i = 0; i < orders.Length; i++)
+            foreach (var plato in platos)
             {
-                string[] quantityperplate = orders[i].Split(':');
-                int.TryParse(quantityperplate[1], out k);
-                if (k == 0) break;
+                if (plato.Cantidad == 0) break;
                 _context.Detalledeorden.Add(
                     new Detalledeorden
                     {
                         Iddetalle = Guid.NewGuid(),
                         Idorden = orderID,
-                        Idproducto = _context.Producto.Where(x => x.Nombreproducto == quantityperplate[0]).Select(x => x.Idproducto).FirstOrDefault(),
-                        Cantproducto = k,
-                        Nombreproducto = quantityperplate[0],
-                        Precioparcial = (decimal)_context.Producto.Where(x => x.Nombreproducto == quantityperplate[0]).Select(x => x.Precioproducto).FirstOrDefault(),
-                        
+                        Idproducto = _context.Producto.Where(x => x.Nombreproducto == plato.Nombre).Select(x => x.Idproducto).FirstOrDefault(),
+                        Cantproducto = plato.Cantidad,
+                        Nombreproducto = plato.Nombre,
+                        Precioparcial = (decimal)_context.Producto.Where(x => x.Nombreproducto == plato.Nombre).Select(x => x.Precioproducto).FirstOrDefault()
                     }
                 );
                 _context.SaveChanges();
@@ -124,33 +122,27 @@ namespace EasyOrderWeb.Controllers
         }
         #endregion
 
-        #region
+        #region get the last 4 orders
         [HttpPost]
         [Route("Last Orders")]
-        public OrderInfo[] GetLast4Orders()
+        public Order[] GetLast4Orders()
         {
             Guid test = new Guid();
-            string platoCantidad;
-            OrderInfo[] orders = new OrderInfo[4];
-            for(int i = 0; i < 4; i++)
+            Order[] orders = new Order[4];
+            List<Plato> platos = new List<Plato>();
+            for (int i = 0; i < 4; i++)
             {
-                platoCantidad = "";
+                platos.Clear();
                 if (Orderbuffer[i] == test) break;
-                string mesa = _context.Orden.Where(x => x.Idorden == Orderbuffer[i]).Select(x => x.Numeromesa)+string.Empty;
+                var mesa = _context.Orden.Where(x => x.Idorden == Orderbuffer[i]).Select(x => x.Numeromesa); 
                 //retrive all the order detail associated with the ID saved on the buffer
                 IEnumerable<Detalledeorden> detalle = _context.Orden.Where(x=>x.Idorden==Orderbuffer[i]).SelectMany(x => x.Detalledeorden);
-                //for each detail, retrieve the product name and quantity so a string is constructed to send back to the page
-                int k = 0;
+                //for each detail, retrieve the product name and quantity so it´s possible to create an object to send back information
                 foreach (var item in detalle)
                 {
-                    if(k!=0) platoCantidad += ",";
-                    var productName = item.Nombreproducto;
-                    var quantity = item.Cantproducto;
-                    string tmp = productName + ":" + quantity;
-                    platoCantidad += tmp;
-                    k++;
+                    platos.Add(new Plato { Cantidad = int.Parse(item.Cantproducto.ToString()), Nombre = item.Nombreproducto});
                 }
-                orders[i] = new OrderInfo { numMesa = mesa+string.Empty, platoCantidad = platoCantidad}; 
+                orders[i] = new Order { NumeroMesa = int.Parse(mesa.ToString()), Platos = platos}; 
             }
             return orders;
         }

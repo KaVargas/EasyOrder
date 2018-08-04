@@ -97,28 +97,34 @@ function sendPedido() {
         url: "/api/order/add",
         method: "POST",
         data: JSON.stringify({
-            numMesa: "1",
-            platoCantidad: "porcionYuca:" + $('#Number1')[0].value + ",carneAhumada:" + $('#Number2')[0].value +
-                ",caldoCarachama:" + $('#Number3')[0].value + ",tilapiaFrita:" + $('#Number4')[0].value +
-                ",maitoTilapia:" + $('#Number5')[0].value + ",maitoPollo:" + $('#Number6')[0].value +
-                ",gaseosa:" + $('#Number7')[0].value + ",guayusa:" + $('#Number8')[0].value +
-                ",agua:" + $('#Number9')[0].value + "",
-            UserName:"ismalfprueba"
+            NumeroMesa: 1,
+            Platos: [
+                { Nombre: "porcionYuca", Cantidad: $('#Number1')[0].value },
+                { Nombre: "carneAhumada", Cantidad: $('#Number2')[0].value },
+                { Nombre: "caldoCarachama", Cantidad: $('#Number3')[0].value },
+                { Nombre: "tilapiaFrita", Cantidad: $('#Number4')[0].value },
+                { Nombre: "maitoTilapia", Cantidad: $('#Number5')[0].value },
+                { Nombre: "maitoPollo", Cantidad: $('#Number6')[0].value },
+                { Nombre: "gaseosa", Cantidad: $('#Number7')[0].value },
+                { Nombre: "guayusa", Cantidad: $('#Number8')[0].value },
+                { Nombre: "agua", Cantidad: $('#Number9')[0].value }
+            ],
+            NombreEmpleado:"ismalfprueba"
         }),
         dataType: 'json',
         contentType: "application/json",
         async: false,
         success: function (result, status, jqXHR) {
             if (result.allowed) {
-                targetUrl.value = "/PrincipalPage";
+                location.href = "https://easyorderweb.azurewebsites.net/PrincipalPage";
             }
             else {
-                targetUrl.value = "/Error";
+                location.href = "https://easyorderweb.azurewebsites.net/Error";
 
             }
         },
         error(jqXHR, textStatus, errorThrown) {
-            targetUrl.value = "/Error";
+            location.href = "https://easyorderweb.azurewebsites.net/Error";
         }
     });
 }

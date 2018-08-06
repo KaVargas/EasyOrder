@@ -67,6 +67,7 @@ namespace EasyOrderWeb.Controllers
                     Idpersona = _context.Empleado.Where(x => x.Username == orderInfo.NombreEmpleado).Select(x => x.Idpersona).FirstOrDefault(),
                     Idorden = id,
                     Preciototal = GetTotalPrice(orderInfo.Platos)
+                    //Agregar estado
                 });
             _context.SaveChanges();
             OrderDetails(orderInfo.Platos, id);

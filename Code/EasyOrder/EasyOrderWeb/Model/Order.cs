@@ -9,6 +9,7 @@ namespace EasyOrderWeb.Model
     {
         public int NumeroMesa { get; set; }
         public string NombreEmpleado { get; set; }
+        public string EstadoOrden { get; set; }
         public List<Plato> Platos { get; set; }
     }
 }

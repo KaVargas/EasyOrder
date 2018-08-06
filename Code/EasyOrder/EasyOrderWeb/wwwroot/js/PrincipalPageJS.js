@@ -96,7 +96,7 @@ function sendPedido() {
                 { Nombre: "agua", Cantidad: $('#Number9')[0].value }
             ],
             NombreEmpleado: "ismalfprueba",
-            EstadoOrden: "Espera"
+            EstadoOrden:"Espera"
         }),
         dataType: 'json',
         contentType: "application/json",

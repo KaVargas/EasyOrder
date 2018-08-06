@@ -78,20 +78,6 @@ function encerar() {
     $('#pa9').css("display", "none");
 }
 
-//$(document).ready(function () {
-//    $("#closeModal2").click(function () {
-//        document.getElementById("pa1").style.display = "none";
-//        $('#pa2').css("display", "none");
-//        $('#pa3').css("display", "none");
-//        $('#pa4').css("display", "none");
-//        $('#pa5').css("display", "none");
-//        $('#pa6').css("display", "none");
-//        $('#pa7').css("display", "none");
-//        $('#pa8').css("display", "none");
-//        $('#pa9').css("display", "none");
-//    });
-//});
-
 function sendPedido() {
     $.ajax({
         url: "/api/order/add",
@@ -109,7 +95,8 @@ function sendPedido() {
                 { Nombre: "guayusa", Cantidad: $('#Number8')[0].value },
                 { Nombre: "agua", Cantidad: $('#Number9')[0].value }
             ],
-            NombreEmpleado:"ismalfprueba"
+            NombreEmpleado: "ismalfprueba",
+            EstadoOrden: "Espera"
         }),
         dataType: 'json',
         contentType: "application/json",

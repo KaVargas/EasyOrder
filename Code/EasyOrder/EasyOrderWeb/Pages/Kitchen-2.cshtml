@@ -1,9 +1,8 @@
 ﻿@page
-
 @*<script src="~/js/es5-chat.js"></script>*@
 
 <head>
-    <title>Kitchen2</title>
+    <title>Kitchen</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @*todo lo necesario para bootstrap -> inicio*@
@@ -20,37 +19,19 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-6">&nbsp;</div>
-            <div class="col-6">
-                <ul id="messagesList"></ul>
 
-   
-        <header>
-            <div class="container">
-                <section class="main row">
-                    <article class="col-xs-4"></article>
-
-                    <article class="col-xs-4">
-                        <H1>
-                            KITCHEN
-                        </H1>
-                    </article>
-
-                    <article class="col-xs-4"></article>
-                </section>
-            </div>
-        </div>
-    </div>
     <header>
         <div class="container">
             <section class="main row">
-                <article class="col-xs-4"></article>
+                <article class="col-xs-4">
+                    <button class="btn btn-xs">
+                        <img src="~/images/estado.png" class="img-responsive img-circle" onclick="location.href = '/PrincipalPage';" height="50px" width="50px">
+                    </button>
+                </article>
 
                 <article class="col-xs-4">
                     <H1>
-                        KITCHEN 2
+                        COCINA
                     </H1>
                 </article>
 
@@ -67,120 +48,49 @@
         <a class="btn btn-primary" onclick="Mostrar_Ocultar_Cuatro()">Cuatro</a>
     </div>
 
-    <section id="fila1">
+    <div class="container">
+        <!--primera fila de los cuadrantes-->
 
-        <div class="container">
-            <!--primera fila de los cuadrantes-->
-            <section class="main row">
-                <article id="uno" class="col-xs-6">
-                    <p>
-                        PRIMER CUADRANTE
-                    </p>
-                    <p>primerplato</p>
-                    <br>
-                </article>
+        <section class="main row">
+            <article id="uno/" class="col-xs-3">
+                <p>
+                    esto no se elimina1
+                </p>
+                <p id="uno">
+                    esto no se elimina1
+                </p>
+                <br>
+            </article>
 
-                <article id="dos" class="col-xs-6">
-                    <p>
-                        SEGUNDO CUADRANTE
-                    </p>
-                    <br>
-                </article>
-            </section>
-        </div>
-    </section>
+            <article id="dos/" class="col-xs-3">
+                <p>
+                    esto no se elimina2
+                </p>
+                <p id="dos">
+                    esto no se elimina1
+                </p>
+                <br>
+            </article>
 
+            <article id="tres/" class="col-xs-3">
+                <p>
+                    esto no se elimina3
+                </p>
+                <p id="tres">
+                    esto no se elimina1
+                </p>
+                <br>
+            </article>
 
-    <section id="fila2">
-
-        <div class="container">
-            <!--segunda fila de los cuadrantes-->
-            <section class="main row">
-                <article id="tres" class="col-xs-6">
-                    <p>
-                        TERCER CUADRANTE
-                    </p>
-                    <br>
-                </article>
-
-                <article id="cuatro" class="col-xs-6">
-                    <p>
-                        CUARTO CUADRANTE
-                    </p>
-                    <br>
-                </article>
-            </section>
-        </div>
-    </section>
-            <div class="container">
-                <!--primera fila de los cuadrantes-->
- 
-                <section class="main row">
-                    <article id="uno/" class="col-xs-3">
-                        <p>
-                            esto no se elimina1
-                        </p>
-                        <br>
-                    </article>
-
-                    <article id="dos/" class="col-xs-3">
-                        <p>
-                            esto no se elimina2
-                        </p>
-                        <br>
-                    </article>
-
-                    <article id="tres/" class="col-xs-3">
-                        <p>
-                            esto no se elimina3
-                        </p>
-                        <br>
-                    </article>
-
-                    <article id="cuatro/" class="col-xs-3">
-                        <p>
-                            esto no se elimina4
-                        </p>
-                        <br>
-                    </article>
-                </section>
-            </div>
-
-        
-        <section id="fila2">
-
-            <div class="container">
-                <!--primera fila de los cuadrantes-->
-                <section class="main row">
-                    <article id="uno" class="col-xs-3">
-                        <p id="par1" style="display:none">
-                            PRIMERO
-                        </p>
-                        <br>
-                    </article>
-
-                    <article id="dos" class="col-xs-3">
-                        <p id="par2" style="display:none">
-                            SEGUNDO
-                        </p>
-                        <br>
-                    </article>
-
-                    <article id="tres" class="col-xs-3">
-                        <p id="par3" style="display:none">
-                            TERCERO
-                        </p>
-                        <br>
-                    </article>
-
-                    <article id="cuatro" class="col-xs-3">
-                        <p id="par4" style="display:none">
-                            CUARTO
-                        </p>
-                        <br>
-                    </article>
-                </section>
-            </div>
-
+            <article id="cuatro/" class="col-xs-3">
+                <p>
+                    esto no se elimina4
+                </p>
+                <p id="cuatro">
+                    esto no se elimina1
+                </p>
+                <br>
+            </article>
         </section>
+    </div>
 </body>

@@ -6,6 +6,12 @@ namespace DatabaseLayer.Models
 {
     public partial class EasyorderContext : DbContext
     {
+        public EasyorderContext()
+        {
+        }
+
+       
+
         public virtual DbSet<Detalledeorden> Detalledeorden { get; set; }
         public virtual DbSet<Empleado> Empleado { get; set; }
         public virtual DbSet<Orden> Orden { get; set; }
@@ -99,6 +105,11 @@ namespace DatabaseLayer.Models
                 entity.Property(e => e.Idorden)
                     .HasColumnName("IDORDEN")
                     .ValueGeneratedNever();
+
+                entity.Property(e => e.Estadoorden)
+                    .HasColumnName("ESTADOORDEN")
+                    .HasMaxLength(16)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Idempleado).HasColumnName("IDEMPLEADO");
 

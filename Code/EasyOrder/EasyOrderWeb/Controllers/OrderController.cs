@@ -34,8 +34,9 @@ namespace EasyOrderWeb.Controllers
         {
             try
             {
-                AddOrder(order); 
+                
                 _hubContext.Clients.All.SendAsync("ReceiveMessage", Newtonsoft.Json.JsonConvert.SerializeObject(order));
+                AddOrder(order);
                 return new Response
                 {
                     Allowed = true,
@@ -46,7 +47,7 @@ namespace EasyOrderWeb.Controllers
                 return new Response
                 {
                     Allowed = false,
-                    Message = "Error"
+                    Message = "Error, Possible connection Failure"
                 };
             }
             
@@ -66,8 +67,9 @@ namespace EasyOrderWeb.Controllers
                     Idempleado = _context.Empleado.Where(x => x.Username == orderInfo.NombreEmpleado).Select(x => x.Idempleado).FirstOrDefault(),
                     Idpersona = _context.Empleado.Where(x => x.Username == orderInfo.NombreEmpleado).Select(x => x.Idpersona).FirstOrDefault(),
                     Idorden = id,
+                    Estadoorden =orderInfo.EstadoOrden,
                     Preciototal = GetTotalPrice(orderInfo.Platos)
-                    //Agregar estado
+                    
                 });
             _context.SaveChanges();
             OrderDetails(orderInfo.Platos, id);

@@ -28,12 +28,12 @@
                         targetUrl.value = "/PrincipalPage";
                     }
                     else {
-                        targetUrl.value = "/Index";
+                        targetUrl.value = "/Error";
 
                     }
                 },
                 error(jqXHR, textStatus, errorThrown) {
-                    targetUrl.value = "/Index";
+                    targetUrl.value = "/Error";
                 }
             });
         }
@@ -120,7 +120,7 @@
 
         <div class="container" style="background-color:#f1f1f1">
             <button id="registerButton" type="button" class="registerbtn" onclick="location.href = '/RegisterPage';">Registrarse</button>
-            <span class="psw"><a href="#">Olvidó la contraseña?</a></span>
+            @*<span class="psw"><a href="#">Olvidó la contraseña?</a></span>*@
         </div>
     </form>
 

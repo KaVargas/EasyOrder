@@ -6,10 +6,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 connection.on("ReceiveMessage", (message) => {
     pushedOrder = JSON.parse(message);
-    const msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");    
-    const li = document.createElement("li");
-    li.textContent = message;
-    document.getElementById("messagesList").appendChild(li);
+    fillOrder(pushedOrder);
 });
 
 connection.start().catch(err => console.error(err.toString()));

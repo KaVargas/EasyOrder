@@ -144,6 +144,24 @@ namespace EasyOrderWeb.Controllers
                     }).ToList()
                 }).ToList();
         }
+
+        [HttpGet]
+        [Route("DispatchOrder")]
+        public bool DispatchOrder(Guid orderId)
+        {
+            var order = _context.Orden.FirstOrDefault(x => x.Idorden == orderId);
+            if(order!=null)
+            {
+                order.Estadoorden = "Terminado";
+                _context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
         #endregion
     }
 }

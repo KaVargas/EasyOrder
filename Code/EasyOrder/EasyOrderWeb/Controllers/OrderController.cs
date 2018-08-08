@@ -34,7 +34,8 @@ namespace EasyOrderWeb.Controllers
         {
             try
             {
-                AddOrder(order); 
+                var orderId = AddOrder(order);
+                order.OrderNumber = orderId;
                 _hubContext.Clients.All.SendAsync("ReceiveMessage", Newtonsoft.Json.JsonConvert.SerializeObject(order));
                 return new Response
                 {

@@ -1,11 +1,11 @@
-﻿var orders = [];
+﻿var pushedOrder;
 
 const connection = new signalR.HubConnectionBuilder()
     .withUrl("/chatHub")
     .build();
 
 connection.on("ReceiveMessage", (message) => {
-    orders.push(JSON.parse(message));
+    pushedOrder = JSON.parse(message);
     const msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");    
     const li = document.createElement("li");
     li.textContent = message;

@@ -100,7 +100,7 @@ function sendPedido() {
         }),
         dataType: 'json',
         contentType: "application/json",
-        async: true,
+        async: false,
         success: function (result, status, jqXHR) {
             if (result.allowed) {
                 location.href = "https://easyorderweb.azurewebsites.net/PrincipalPage";

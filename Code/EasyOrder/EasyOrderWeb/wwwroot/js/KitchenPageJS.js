@@ -41,6 +41,7 @@ function Mostrar_Ocultar_Uno() {
         OcultarUno();
         dispatchOrder(id1);
         $('#uno')[0].innerText = "";
+        location.reload();
     }
 }
 
@@ -53,6 +54,7 @@ function Mostrar_Ocultar_Dos() {
         OcultarDos();
         dispatchOrder(id2);
         $('#dos')[0].innerText = "";
+        location.reload();
     }
 }
 
@@ -64,7 +66,8 @@ function Mostrar_Ocultar_Tres() {
     } else {
         OcultarTres();
         dispatchOrder(id3);
-        $('#tres')[0].innerText = ""
+        $('#tres')[0].innerText = "";
+        location.reload();
     }
 }
 
@@ -76,7 +79,8 @@ function Mostrar_Ocultar_Cuatro() {
     } else {
         OcultarCuatro();
         dispatchOrder(id4);
-        $('#cuatro')[0].innerText = ""
+        $('#cuatro')[0].innerText = "";
+        location.reload();
     }
 }
 

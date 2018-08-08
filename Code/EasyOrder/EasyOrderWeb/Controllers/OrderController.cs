@@ -138,6 +138,7 @@ namespace EasyOrderWeb.Controllers
                     EstadoOrden = x.Estadoorden,
                     NumeroMesa = x.Numeromesa.Value,
                     Platos = _context.Detalledeorden.Where(y => y.Idorden == x.Idorden)
+                    .Where(y => y.Cantproducto.Value != 0)
                     .Select(y => new Plato
                     {
                         Nombre = y.Nombreproducto,

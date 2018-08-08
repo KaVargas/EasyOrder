@@ -67,19 +67,20 @@ function Mostrar_Ocultar_Cuatro() {
     }
 }
 
-function verificarVacios() {
-    if (par1.style.display == "none") {
-        if (hayOrdenes()) {
-
+function getFourOrders() {
+    $.ajax({
+        url: "/api/GetOrders",
+        type: "get", //send it through get method
+        data: {
+            amount: 4
+        },
+        success: function (response) {
+            //Do Something
+        },
+        error: function (xhr) {
+            //Do Something to handle error
         }
-    }
-    if (par2.style.display == "none") {
-
-    }
-    if (par3.style.display == "none") {
-
-    }
-    if (par4.style.display == "none") {
-
-    }
+    });
 }
+
+window.onload = getFourOrders();

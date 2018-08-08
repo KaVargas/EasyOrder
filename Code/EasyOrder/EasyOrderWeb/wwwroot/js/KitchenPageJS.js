@@ -1,5 +1,8 @@
 ﻿var fourOrder;
-
+var id1;
+var id2;
+var id3;
+var id4;
 
 function MostrarUno() {
     document.getElementById("uno").style.display = "block";
@@ -36,6 +39,8 @@ function Mostrar_Ocultar_Uno() {
         MostrarUno();
     } else {
         OcultarUno();
+        dispatchOrder(id1);
+        $('#uno')[0].innerText = "";
     }
 }
 
@@ -46,6 +51,8 @@ function Mostrar_Ocultar_Dos() {
         MostrarDos();
     } else {
         OcultarDos();
+        dispatchOrder(id2);
+        $('#dos')[0].innerText = "";
     }
 }
 
@@ -56,6 +63,8 @@ function Mostrar_Ocultar_Tres() {
         MostrarTres();
     } else {
         OcultarTres();
+        dispatchOrder(id3);
+        $('#tres')[0].innerText = ""
     }
 }
 
@@ -66,6 +75,8 @@ function Mostrar_Ocultar_Cuatro() {
         MostrarCuatro();
     } else {
         OcultarCuatro();
+        dispatchOrder(id4);
+        $('#cuatro')[0].innerText = ""
     }
 }
 
@@ -86,6 +97,24 @@ function getFourOrders() {
     });
 }
 
+function dispatchOrder(id) {
+    $.ajax({
+        url: "/api/order/DispatchOrder",
+        type: "get", //send it through get method
+        data: {
+            orderId: id
+        },
+        success: function (response) {
+            fourOrder = response;
+            fillEmpty();
+        },
+        error: function (xhr) {
+            //Do Something to handle error
+        }
+    });
+}
+
+
 window.onload = getFourOrders();
 
 function fillEmpty() {
@@ -95,22 +124,38 @@ function fillEmpty() {
         switch (i) {
             case 0:
                 detalle = "Detalle de Orden\n";
-                for (var j in fourOrder[i].platos) {
-                    detalle += ("" + j.nombre + ":" + j.cantidad+"\n");
+                for (var j = 0; j < fourOrder[i].platos.length; j++) {
+                    detalle += ("" + fourOrder[i].platos[j].nombre + ":" + fourOrder[i].platos[j].cantidad + "\n");
                 }
-                $('#uno')[0].innerText = "Hay orden";
+                id1 = fourOrder[i].orderNumber;
+                $('#uno')[0].innerText = "" + detalle;
                 Mostrar_Ocultar_Uno();
                 break;
             case 1:
-                $('#dos')[0].innerText = "Hay orden";
+                detalle = "Detalle de Orden\n";
+                for (var j = 0; j < fourOrder[i].platos.length; j++) {
+                    detalle += ("" + fourOrder[i].platos[j].nombre + ":" + fourOrder[i].platos[j].cantidad + "\n");
+                }
+                id2 = fourOrder[i].orderNumber;
+                $('#dos')[0].innerText = "" + detalle;
                 Mostrar_Ocultar_Dos();
                 break;
             case 2:
-                $('#tres')[0].innerText = "Hay orden";
+                detalle = "Detalle de Orden\n";
+                for (var j = 0; j < fourOrder[i].platos.length; j++) {
+                    detalle += ("" + fourOrder[i].platos[j].nombre + ":" + fourOrder[i].platos[j].cantidad + "\n");
+                }
+                id3 = fourOrder[i].orderNumber;
+                $('#tres')[0].innerText = "" + detalle;
                 Mostrar_Ocultar_Tres();
                 break;
             case 3:
-                $('#cuatro')[0].innerText = "Hay orden";
+                detalle = "Detalle de Orden\n";
+                for (var j = 0; j < fourOrder[i].platos.length; j++) {
+                    detalle += ("" + fourOrder[i].platos[j].nombre + ":" + fourOrder[i].platos[j].cantidad + "\n");
+                }
+                id4 = fourOrder[i].orderNumber;
+                $('#cuatro')[0].innerText = "" + detalle;
                 Mostrar_Ocultar_Cuarto();
                 break;
         }

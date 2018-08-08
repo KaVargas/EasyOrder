@@ -95,7 +95,7 @@ function sendPedido() {
                 { Nombre: "guayusa", Cantidad: $('#Number8')[0].value },
                 { Nombre: "agua", Cantidad: $('#Number9')[0].value }
             ],
-            NombreEmpleado: "ismalfprueba",
+            NombreEmpleado: "kgvargas",
             EstadoOrden:"Espera"
         }),
         dataType: 'json',

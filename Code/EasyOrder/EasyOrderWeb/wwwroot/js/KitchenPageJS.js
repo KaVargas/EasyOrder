@@ -156,8 +156,51 @@ function fillEmpty() {
                 }
                 id4 = fourOrder[i].orderNumber;
                 $('#cuatro')[0].innerText = "" + detalle;
-                Mostrar_Ocultar_Cuarto();
+                Mostrar_Ocultar_Cuatro();
                 break;
         }
+    }
+}
+
+function fillOrder(order) {
+    if (document.getElementById("uno").style.display == "none") {
+        detalle = "Detalle de Orden\n";
+        for (var j = 0; j < order.Platos.length; j++) {
+            detalle += ("" + order.Platos[j].Nombre + ":" + order.Platos[j].Cantidad + "\n");
+        }
+        id1 = order.OrderNumber;
+        $('#uno')[0].innerText = "" + detalle;
+        Mostrar_Ocultar_Uno();
+        return;
+    }
+    if (document.getElementById("dos").style.display == "none") {
+        detalle = "Detalle de Orden\n";
+        for (var j = 0; j < order.Platos.length; j++) {
+            detalle += ("" + order.Platos[j].Nombre + ":" + order.Platos[j].Cantidad + "\n");
+        }
+        id2 = order.OrderNumber;
+        $('#dos')[0].innerText = "" + detalle;
+        Mostrar_Ocultar_Dos();
+        return;
+    }
+    if (document.getElementById("tres").style.display == "none") {
+        detalle = "Detalle de Orden\n";
+        for (var j = 0; j < order.Platos.length; j++) {
+            detalle += ("" + order.Platos[j].Nombre + ":" + order.Platos[j].Cantidad + "\n");
+        }
+        id3 = order.OrderNumber;
+        $('#tres')[0].innerText = "" + detalle;
+        Mostrar_Ocultar_Tres();
+        return;
+    }
+    if (document.getElementById("cuatro").style.display == "none") {
+        detalle = "Detalle de Orden\n";
+        for (var j = 0; j < order.Platos.length; j++) {
+            detalle += ("" + order.Platos[j].Nombre + ":" + order.Platos[j].Cantidad + "\n");
+        }
+        id4 = order.OrderNumber;
+        $('#cuatro')[0].innerText = "" + detalle;
+        Mostrar_Ocultar_Cuatro();
+        return;
     }
 }

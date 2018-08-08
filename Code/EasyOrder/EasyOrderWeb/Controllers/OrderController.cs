@@ -17,14 +17,14 @@ namespace EasyOrderWeb.Controllers
     {
         private readonly EasyorderContext _context;
         private readonly IHubContext<ChatHub> _hubContext;
-        private static Guid[] Orderbuffer = { new Guid(), new Guid(), new Guid(), new Guid()}; 
+        private static Guid[] Orderbuffer = { new Guid(), new Guid(), new Guid(), new Guid() };
         private static int OrderCount = 0;
 
         public OrderController(EasyorderContext context, IHubContext<ChatHub> hubContext)
         {
             _context = context;
             _hubContext = hubContext;
-            
+
         }
 
         #region new order
@@ -42,14 +42,15 @@ namespace EasyOrderWeb.Controllers
                     Message = "Successful"
                 };
             }
-            catch {
+            catch
+            {
                 return new Response
                 {
                     Allowed = false,
                     Message = "Error"
                 };
             }
-            
+
         }
         #endregion
 
@@ -57,7 +58,7 @@ namespace EasyOrderWeb.Controllers
         private Guid AddOrder(Order orderInfo)
         {
             Guid id = Guid.NewGuid();
-            
+
             OrderBuff(id);
             _context.Orden.Add(
                 new Orden
@@ -92,7 +93,7 @@ namespace EasyOrderWeb.Controllers
             foreach (var plato in platos)
             {
                 if (plato.Cantidad == 0) break;
-                cantTotal += 
+                cantTotal +=
                     plato.Cantidad * _context.Producto.Where(x => x.Nombreproducto == plato.Nombre).Select(x => x.Precioproducto).FirstOrDefault();
             }
             return cantTotal;
@@ -118,34 +119,30 @@ namespace EasyOrderWeb.Controllers
                 );
                 _context.SaveChanges();
             }
-            
+
             return true;
         }
         #endregion
 
-        #region get the last 4 orders
-        [HttpPost]
-        [Route("Last Orders")]
-        public Order[] GetLast4Orders()
+        #region get orders
+        [HttpGet]
+        [Route("GetOrders")]
+        public List<Order> GetOrders(int amount)
         {
-            Guid test = new Guid();
-            Order[] orders = new Order[4];
-            List<Plato> platos = new List<Plato>();
-            for (int i = 0; i < 4; i++)
-            {
-                platos.Clear();
-                if (Orderbuffer[i] == test) break;
-                var mesa = _context.Orden.Where(x => x.Idorden == Orderbuffer[i]).Select(x => x.Numeromesa); 
-                //retrive all the order detail associated with the ID saved on the buffer
-                IEnumerable<Detalledeorden> detalle = _context.Orden.Where(x=>x.Idorden==Orderbuffer[i]).SelectMany(x => x.Detalledeorden);
-                //for each detail, retrieve the product name and quantity so it´s possible to create an object to send back information
-                foreach (var item in detalle)
+            return  _context.Orden.Where(x => x.Estadoorden == "Espera")                
+                .Take(amount)
+                .Select(x => new Order
                 {
-                    platos.Add(new Plato { Cantidad = int.Parse(item.Cantproducto.ToString()), Nombre = item.Nombreproducto});
-                }
-                orders[i] = new Order { NumeroMesa = int.Parse(mesa.ToString()), Platos = platos}; 
-            }
-            return orders;
+                    OrderNumber = x.Idorden,
+                    EstadoOrden = x.Estadoorden,
+                    NumeroMesa = x.Numeromesa.Value,
+                    Platos = _context.Detalledeorden.Where(y => y.Idorden == x.Idorden)
+                    .Select(y => new Plato
+                    {
+                        Nombre = y.Nombreproducto,
+                        Cantidad = y.Cantproducto.Value
+                    }).ToList()
+                }).ToList();
         }
         #endregion
     }

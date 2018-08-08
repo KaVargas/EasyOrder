@@ -1,4 +1,6 @@
-﻿
+﻿var fourOrder;
+
+
 function MostrarUno() {
     document.getElementById("uno").style.display = "block";
 }
@@ -69,13 +71,14 @@ function Mostrar_Ocultar_Cuatro() {
 
 function getFourOrders() {
     $.ajax({
-        url: "/api/GetOrders",
+        url: "/api/order/GetOrders",
         type: "get", //send it through get method
         data: {
             amount: 4
         },
         success: function (response) {
-            //Do Something
+            fourOrder = response;
+            fillEmpty();
         },
         error: function (xhr) {
             //Do Something to handle error
@@ -84,3 +87,32 @@ function getFourOrders() {
 }
 
 window.onload = getFourOrders();
+
+function fillEmpty() {
+    var i = 0;
+    var detalle;
+    for (i = 0; i < fourOrder.length; i++) {
+        switch (i) {
+            case 0:
+                detalle = "Detalle de Orden\n";
+                for (var j in fourOrder[i].platos) {
+                    detalle += ("" + j.nombre + ":" + j.cantidad+"\n");
+                }
+                $('#uno')[0].innerText = "Hay orden";
+                Mostrar_Ocultar_Uno();
+                break;
+            case 1:
+                $('#dos')[0].innerText = "Hay orden";
+                Mostrar_Ocultar_Dos();
+                break;
+            case 2:
+                $('#tres')[0].innerText = "Hay orden";
+                Mostrar_Ocultar_Tres();
+                break;
+            case 3:
+                $('#cuatro')[0].innerText = "Hay orden";
+                Mostrar_Ocultar_Cuarto();
+                break;
+        }
+    }
+}

@@ -68,8 +68,8 @@ namespace EasyOrderWeb.Controllers
                     Idempleado = _context.Empleado.Where(x => x.Username == orderInfo.NombreEmpleado).Select(x => x.Idempleado).FirstOrDefault(),
                     Idpersona = _context.Empleado.Where(x => x.Username == orderInfo.NombreEmpleado).Select(x => x.Idpersona).FirstOrDefault(),
                     Idorden = id,
-                    Preciototal = GetTotalPrice(orderInfo.Platos)
-                    //Agregar estado
+                    Preciototal = GetTotalPrice(orderInfo.Platos),
+                    Estadoorden = orderInfo.EstadoOrden
                 });
             _context.SaveChanges();
             OrderDetails(orderInfo.Platos, id);
@@ -130,7 +130,7 @@ namespace EasyOrderWeb.Controllers
         [Route("GetOrders")]
         public List<Order> GetOrders(int amount)
         {
-            return  _context.Orden.Where(x => x.Estadoorden == "Espera")                
+            return _context.Orden.Where(x => x.Estadoorden == "Espera")
                 .Take(amount)
                 .Select(x => new Order
                 {
@@ -151,7 +151,7 @@ namespace EasyOrderWeb.Controllers
         public bool DispatchOrder(Guid orderId)
         {
             var order = _context.Orden.FirstOrDefault(x => x.Idorden == orderId);
-            if(order!=null)
+            if (order != null)
             {
                 order.Estadoorden = "Terminado";
                 _context.SaveChanges();
@@ -161,7 +161,7 @@ namespace EasyOrderWeb.Controllers
             {
                 return false;
             }
-            
+
         }
         #endregion
     }

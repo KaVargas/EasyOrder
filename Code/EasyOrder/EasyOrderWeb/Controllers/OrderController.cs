@@ -93,8 +93,7 @@ namespace EasyOrderWeb.Controllers
         {
             double cantTotal = 0.0;
             foreach (var plato in platos)
-            {
-                if (plato.Cantidad == 0) break;
+            {                
                 cantTotal +=
                     plato.Cantidad * _context.Producto.Where(x => x.Nombreproducto == plato.Nombre).Select(x => x.Precioproducto).FirstOrDefault();
             }

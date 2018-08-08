@@ -106,7 +106,6 @@ namespace EasyOrderWeb.Controllers
         {
             foreach (var plato in platos)
             {
-                if (plato.Cantidad == 0) break;
                 _context.Detalledeorden.Add(
                     new Detalledeorden
                     {
